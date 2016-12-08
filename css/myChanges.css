@@ -3,3 +3,16 @@
   width: 200px;
   border-radius: 50%;
 }
+
+#resume {
+  background-color: #E74C3C
+}
+
+.thumbnails {
+  width: 900px;
+  height: 260px;
+}
+
+#contactsection {
+  border: 1px solid;
+}
