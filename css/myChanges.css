@@ -16,3 +16,24 @@
 #contactsection {
   border: 1px solid;
 }
+
+.flat div {
+  color: #fff;
+  background-color: #E74C3C;
+  height: 50px;
+  width: auto;
+  border: none;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.flat div:hover {
+  color: #fff;
+  background-color: #E76153;
+}
+
+.flat div:active {
+  color: #fff;
+  background-color: #E7766A;
+}
