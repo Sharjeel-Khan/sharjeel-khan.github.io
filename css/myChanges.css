@@ -70,7 +70,7 @@
 }
 
 .progress-bar-flat {
-    background-color: rgba(24,188,156,1);
+    background-color: #2C3E50;
 }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

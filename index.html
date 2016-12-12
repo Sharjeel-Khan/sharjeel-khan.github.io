@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Welcome to my Portfolio</title>
+    <title>Sharjeel Khan</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
     <!-- Theme CSS -->
     <link href="css/freelancer.min.css" rel="stylesheet">
     <link href="css/myChanges.css" rel="stylesheet">
-    <link href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet">
+    <link href="js/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
     <!-- Javascript -->
     <script src="js/angular/angular.min.js"></script>
     <script src="js/angular-animate/angular-animate.min.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="js/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <script src="js/portfolioController.js"></script>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -138,7 +138,7 @@
           <div class="row">
               <div class="col-sm-12 skill" ng-repeat="skill in pc.skills" ng-show="skill.show">
                   <div class="col-sm-3">{{skill.name}}</div>
-                  <div class="col-sm-9 skillbar"><uib-progressbar class="progress-striped" value="skill.percentage" type="flat">{{skill.percentage}}</uib-progressbar></div>
+                  <div class="col-sm-9 skillbar"><uib-progressbar value="skill.percentage" type="flat">{{skill.percentage}}</uib-progressbar></div>
               </div>
           </div>
       </div>
