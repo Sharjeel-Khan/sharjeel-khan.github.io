@@ -17,6 +17,7 @@
     <!-- Theme CSS -->
     <link href="css/freelancer.min.css" rel="stylesheet">
     <link href="css/myChanges.css" rel="stylesheet">
+    <link href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -25,6 +26,8 @@
 
     <!-- Javascript -->
     <script src="js/angular/angular.min.js"></script>
+    <script src="js/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <script src="js/portfolioController.js"></script>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -58,11 +61,9 @@
                     <li class="page-scroll">
                         <a href="#about">About Me</a>
                     </li>
-                    <!--
                     <li class="page-scroll">
                         <a href="#skills">Skills</a>
                     </li>
-                  -->
                     <li class="page-scroll">
                         <a href="#portfolio">Portfolio</a>
                     </li>
@@ -121,7 +122,6 @@
     </section>
 
     <!-- Skills -->
-    <!--
     <section class="success" id="skills">
       <div class="container">
           <div class="row">
@@ -131,28 +131,33 @@
               </div>
           </div>
           <div class="row">
-
+              <div class="col-sm-4 col-xs-4 flatskill text-center" ng-repeat="filter in pc.skillfilters">
+                  <div ng-click="pc.filterSkills(filter.filter)">{{filter.name}}</div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-12 skill" ng-repeat="skill in pc.skills" ng-show="skill.show">
+                  <div class="col-sm-3">{{skill.name}}</div>
+                  <div class="col-sm-9 skillbar"><uib-progressbar class="progress-striped" value="skill.percentage" type="flat">{{skill.percentage}}</uib-progressbar></div>
+              </div>
           </div>
       </div>
     </section>
-  -->
 
     <!-- Portfolio Grid Section -->
-    <section class="success" id="portfolio">
+    <section id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Portfolio</h2>
-                    <hr class="star-light">
+                    <hr class="star-primary">
                 </div>
             </div>
-            <!--
             <div class="row">
-                <div class="col-sm-3 flat text-center" ng-repeat="filter in pc.filters">
+                <div class="col-sm-3 col-xs-3 flat text-center" ng-repeat="filter in pc.filters">
                     <div ng-click="pc.filterProjects(filter.filter)">{{filter.name}}</div>
                 </div>
             </div>
-          -->
             <div class="row">
                 <div class="col-sm-4 portfolio-item" ng-repeat="project in pc.projects" ng-show="project.show">
                     <a ng-href="#{{project.id}}" class="portfolio-link" data-toggle="modal">

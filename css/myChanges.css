@@ -30,10 +30,47 @@
 
 .flat div:hover {
   color: #fff;
-  background-color: #E76153;
+  background-color: #E7767A;
 }
 
 .flat div:active {
   color: #fff;
-  background-color: #E7766A;
+  background-color: #E78776;
 }
+
+.flatskill div {
+  color: #000000;
+  background-color: #ffffff;
+  height: 50px;
+  width: auto;
+  border: none;
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.flatskill div:hover {
+  color: #fff;
+  background-color: #E7767A;
+}
+
+.flatskill div:active {
+  color: #fff;
+  background-color: #E78776;
+}
+
+.skill {
+ margin: 10px;
+ text-align: center;
+ font-size: 32px;
+}
+
+.skillbar{
+  margin-top: 15px;
+}
+
+.progress-bar-flat {
+    background-color: rgba(24,188,156,1);
+}
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
