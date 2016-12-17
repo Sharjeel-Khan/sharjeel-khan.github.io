@@ -12,7 +12,7 @@
                 purpose: "Web Application and Development Course",
                 date: "April - August 2016",
                 service: "Web Development",
-                images: ["KESA1.png","KESA2.png"],
+                images: ["Kesa1.png","Kesa2.png"],
                 imageindex: 0,
                 show: true
               },
