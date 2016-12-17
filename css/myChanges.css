@@ -4,6 +4,14 @@
   border-radius: 50%;
 }
 
+.arrows {
+  padding-top: 15%;
+}
+
+.vis-hidden{
+   visibility: hidden;
+}
+
 #resume {
   background-color: #E74C3C
 }
