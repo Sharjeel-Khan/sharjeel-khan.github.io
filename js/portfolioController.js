@@ -36,10 +36,23 @@
                 description: "In Solidworks, I created 3D models of a Pascaline which is a mechanical calculator invented by Pascal in the early 17th century.",
                 libraries: "",
                 purpose: "Rapid Prototyping Technologies Course",
-                date: "September - December 2016",
+                date: "September - November 2016",
                 service: "3D Printing and Laser Cutting",
                 images: ["Pascaline1.png","Pascaline2.jpg","Pascaline3.jpg","Pascaline4.jpg",
                          "Pascaline5.jpg","Pascaline6.jpg","Pascaline7.jpg"],
+                imageindex: 0,
+                show: true
+              },
+              {
+                name: "Arcade Machine",
+                id: "portfolioModal4",
+                filter: "3d-modeling",
+                description: "In Solidworks, I created a miniature arcade machine using parametrized equations. You can change the size by just changing the scale value and this causes all the pieces to change respectively. I used wood for the sides while I printed the screen, the buttons and the joystick using a 3D-printer.",
+                libraries: "",
+                purpose: "Rapid Prototyping Technologies Course",
+                date: "December 2016",
+                service: "3D Printing and Laser Cutting",
+                images: ["ArcadeMachine1.png"],
                 imageindex: 0,
                 show: true
               }
