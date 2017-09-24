@@ -8,11 +8,10 @@
   padding-top: 15%;
 }
 
-.gallery-image {
-}
+.gallery-image {}
 
-.vis-hidden{
-   visibility: hidden;
+.vis-hidden {
+  visibility: hidden;
 }
 
 #resume {
@@ -29,8 +28,8 @@
 }
 
 .flat div {
-  color: #fff;
-  background-color: #E74C3C;
+  color: #2c3e50;
+  background-color: #fff;
   height: 50px;
   width: auto;
   border: none;
@@ -71,17 +70,34 @@
 }
 
 .skill {
- margin: 10px;
- text-align: center;
- font-size: 32px;
+  margin: 10px;
+  text-align: center;
+  font-size: 32px;
 }
 
-.skillbar{
+.skillbar {
   margin-top: 15px;
 }
 
 .progress-bar-flat {
-    background-color: #2C3E50;
+  background-color: #2C3E50;
 }
 
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.offer-detail-image-div {
+  display: block;
+  width: 100%;
+}
+
+.offer-detail-image {
+  display: block;
+  overflow: visible;
+  width: 100%;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  float: none;
+}
+
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
