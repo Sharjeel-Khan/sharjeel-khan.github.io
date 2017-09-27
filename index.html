@@ -203,6 +203,7 @@
                         on-event-click="pc.eventClicked(calendarEvent)"
                         on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
                         cell-is-open="vm.cellIsOpen"
+                        on-drill-down-click="false"
                         on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
       </mwl-calendar>
     </div>
