@@ -62,7 +62,7 @@
             <a href="#skills">Skills</a>
           </li>
           <li class="page-scroll">
-            <a href="#calendar">Calendar</a>
+            <a href="#map">Map</a>
           </li>
           <li class="page-scroll">
             <a href="#portfolio">Portfolio</a>
@@ -105,18 +105,45 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-lg-offset-2">
-          <p>Hey, my name is Sharjeel Khan. I have a background in Programming Languages and Logic and Web Development. I am currently a Research Assistant at Carnegie Mellon University in Qatar where I am working on the <a href="https://www.cs.cmu.edu/~iliano/projects/metaCLF2/index.shtml">metaCLF2</a>            project with <a href="https://www.cs.cmu.edu/~iliano/">Professor Iliano Cervesato</a> and <a href="http://www.gisellereis.com/">Professor Giselle Reis</a>. </p>
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-lg-12">
+              <p>
+                Hey, my name is Sharjeel Khan. I am interested in Programming Languages, Logic and Software Verification research. I am currently a Research Assistant at Carnegie Mellon University in Qatar where I am working on the
+                <a href="https://www.cs.cmu.edu/~iliano/projects/metaCLF2/index.shtml">metaCLF2</a> project with
+                <a href="https://www.cs.cmu.edu/~iliano/">Professor Iliano Cervesato</a> and <a href="http://www.gisellereis.com/">Professor Giselle Reis</a>. Right now, I am researching about financial systems more specifically Automated Trading Systems
+                (ATS). We are trying to formalize ATS in Celf so we can verify properties of the system by implementing meta-theory in Celf.
+            </div>
+            <div class="col-lg-12">
+              <p>
+                In my free time, I blog about my life and my interests which range from games to manga on <a href="https://medium.com/@sharjeelkhan_41359">Medium</a>. I also play games, watch TV shows like The Big Bang Theory and Game of Thrones, read
+                manga like One Piece and eat food at new restaurants. My absolute favorite thing is to code new projects or participate in online programming competitions while listening to music on Spotify. The projects are normally in Web Development
+                or Embedded Systems as I have a background in them.
+              </p>
+            </div>
+            <div class="col-lg-12">
+              <p>
+                Aside from all of this, I love to travel. I have been to around 20+ countries and 40+ cities. Whenever I get the chance, I try to travel to new countries and to meet new people. I normally backpack around the country to different cities to see the difference
+                of the culture around the country. My most recent trip was to Ukraine where I went to Kiev, Odessa and Chernobyl.
+              </p>
+            </div>
+            <div class="col-lg-12">
+              <p> Hopefully, you like my website. If you need help in your projects, you can check out my resume and email me. Maybe, I might be useful to you.</p>
+            </div>
+            <div class="col-lg-12 text-center">
+              <a href="/files/ResumeQ.pdf" class="btn btn-lg btn-outline" id="resume">
+                            <i class="fa fa-download"></i> Download Resume
+                        </a>
+            </div>
+
+          </div>
         </div>
         <div class="col-lg-4">
-          <p>Right now, I am researching about financial systems. We are working on a logical framework to verify financial systems. If you need help in your projects, you can check out my resume and email me.</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <a href="/files/ResumeQ.pdf" class="btn btn-lg btn-outline" id="resume">
-                        <i class="fa fa-download"></i> Download Resume
-                    </a>
+          <div class="row">
+            <div class="col-lg-12">
+              <img class="img-responsive" id="aboutmepicture" src="img/aboutme.jpg"alt="">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -148,7 +175,7 @@
   </section>
 
   <!-- Calendar Grid Section -->
-  <section id="calendar">
+  <!--  <section id="calendar">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
@@ -206,6 +233,21 @@
                         on-drill-down-click="false"
                         on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
       </mwl-calendar>
+    </div>
+  </section>
+-->
+
+  <section id="map">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Map</h2>
+          <hr class="star-primary">
+        </div>
+      </div>
+
+
+
     </div>
   </section>
 
@@ -371,6 +413,9 @@
                   </li>
                   <li>Service:
                     <strong>{{project.service}}</strong>
+                  </li>
+                  <li>Link:
+                    <a ng-href="{{project.link}}"><strong>{{project.location}}</strong></a>
                   </li>
                 </ul>
                 <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>

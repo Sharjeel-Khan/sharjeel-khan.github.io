@@ -47,8 +47,9 @@
           {image: "Kesa1.png", id: 0},
           {image: "Kesa2.png", id: 1}
         ],
-        imageindex: 0,
-        show: true
+        show: true,
+        link: "https://github.com/yelsayed/Kesa",
+        location: "Github"
       }, {
         name: "Embedded Systems: MC9S12C128",
         id: "portfolioModal2",
@@ -61,8 +62,9 @@
         images: [
           {image: "EmbeddedSystems.jpg", id: 0}
         ],
-        imageindex: 0,
-        show: true
+        show: true,
+        link: "https://github.com/Sharjeel-Khan/MC9S12C128",
+        location: "Github"
       }, {
         name: "Pascaline",
         id: "portfolioModal3",
@@ -81,8 +83,9 @@
           {image: "Pascaline6.jpg", id: 5},
           {image: "Pascaline7.jpg", id: 6}
         ],
-        imageindex: 0,
-        show: true
+        show: true,
+        link: "",
+        location: "None"
       }, {
         name: "Arcade Machine",
         id: "portfolioModal4",
@@ -95,8 +98,9 @@
         images: [
           {image: "ArcadeMachine1.png", id: 0}
       ],
-        imageindex: 0,
-        show: true
+        show: true,
+        link: "",
+        location: "None"
       }
     ];
 

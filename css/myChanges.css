@@ -4,6 +4,12 @@
   border-radius: 50%;
 }
 
+#aboutmepicture {
+  height: 700px;
+  border: 1px solid; 
+}
+
+
 .arrows {
   padding-top: 15%;
 }
