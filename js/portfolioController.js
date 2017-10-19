@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  angular.module('portFolio', ['mwl.calendar','ui.bootstrap','ngAnimate','ngMap']).controller("portfolioController", function(NgMap) {
+  angular.module('portFolio', ['mwl.calendar','ui.bootstrap','ngAnimate','ngMap']).controller("portfolioController", function(NgMap,$scope) {
     var pc = this;
     this.myInterval = 3000;
     this.noWrapSlides = false;
