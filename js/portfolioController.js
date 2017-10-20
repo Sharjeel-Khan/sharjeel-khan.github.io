@@ -1,81 +1,344 @@
 (function() {
   "use strict";
-  angular.module('portFolio', ['mwl.calendar','ui.bootstrap','ngAnimate','ngMap']).controller("portfolioController", function(NgMap,$scope) {
+  angular.module('portFolio', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate', 'ngMap']).controller("portfolioController", function(NgMap, $http) {
     var pc = this;
-    this.myInterval = 3000;
+    this.myInterval = 0;
     this.noWrapSlides = false;
     this.active = 0;
     this.calendarView = 'month';
     this.viewDate = new Date();
     this.events = [];
     this.cellIsOpen = true;
+    this.posts = [];
 
     this.locations = [
-      {pos:"Addis Ababa, Ethiopia", name:"Addis Ababa, Ethiopia", date:"May 2015", link:""},
-
-      {pos:"Kiev, Ukraine", name:"Kiev, Ukraine", date:"September 2017", link:""},
-      {pos:"Odessa, Ukraine", name:"Odessa, Ukraine", date:"September 2017", link:""},
-      {pos:"Chernobyl, Ukraine", name:"Chernobyl, Ukraine", date:"September 2017", link:""},
-
-      {pos:"Tokyo, Japan", name:"Tokyo, Japan", date:"October 2014, June 2017", link:""},
-      {pos:"Osaka, Japan", name:"Osaka, Japan", date:"October 2014", link:""},
-      {pos:"Nara, Japan", name:"Nara, Japan", date:"June 2017", link:""},
-      {pos:"Kiyoto, Japan", name:"Kiyoto, Japan", date:"June 2017", link:""},
-      {pos:"Hiroshima, Japan", name:"Hiroshima, Japan", date:"June 2017", link:""},
-
-      {pos:"Sydney, Australia", name:"Sydney, Australia", date:"Mar 2017", link:""},
-
-      {pos:"Bangkok, Thailand", name:"Bangkok, Thailand", date:"", link:""},
-      {pos:[7.949674,98.321200], name:"Phuket, Thailand", date:"", link:""},
-      {pos:[-8.417036,115.181168], name:"Bali, Indonesia", date:"", link:""},
-      {pos:[22.278545,114.173708], name:"Hong Kong", date:"", link:""},
-      {pos:[1.356545,103.878514], name:"Singapore", date:"", link:""},
-      {pos:[3.139018,101.685957], name:"Kuala Lumpur, Malaysia", date:"", link:""},
-      {pos:[3.139018,101.685957], name:"Kuala Lumpur, Malaysia", date:"", link:""},
-
-      {pos:[24.737871, 46.652076], name:"Riyadh, Saudi Arabia", date:"", link:""},
-      {pos:[21.291310, 39.220721], name:"Jeddah, Saudi Arabia", date:"", link:""},
-      {pos:[29.376588, 47.977661], name:"Kuwait City, Kuwait", date:"", link:""},
-      {pos:[25.218046, 55.267532], name:"Dubai, United Arab Emirates", date:"", link:""},
-      {pos:[24.458665, 54.375963], name:"Abu Dhabi, United Arab Emirates", date:"", link:""},
-      {pos:[25.355906, 55.422020], name:"Sharjah, United Arab Emirates", date:"", link:""},
-      {pos:[24.140932, 55.794922], name:"Al-Ain, United Arab Emirates", date:"", link:""},
-      {pos:[23.594644, 58.405117], name:"Muscat, Oman", date:"", link:""},
-      {pos:[24.352803, 56.705328], name:"Sohar, Oman", date:"", link:""},
-      {pos:[25.292014, 51.526406], name:"Doha, Qatar", date:"", link:""},
-
-      {pos:[40.441016, -79.988399], name:"Pittsburgh, PA, USA", date:"", link:""},
-      {pos:[39.954006, -75.161987], name:"Philadelphia, PA, USA", date:"", link:""},
-      {pos:[25.763531, -80.196502], name:"Miami, FL, USA", date:"", link:""},
-      {pos:[28.540228, -81.379059], name:"Orlando, FL, USA", date:"", link:""},
-      {pos:[41.877631, -87.620049], name:"Chicago, IL, USA", date:"", link:""},
-      {pos:[42.362482, -71.054063], name:"Boston, MA, USA", date:"", link:""},
-      {pos:[40.710683, -74.007181], name:"New York City, NY, USA", date:"", link:""},
-      {pos:[38.906872, -77.036557], name:"Washington, DC, USA", date:"", link:""},
-      {pos:[36.170939, -115.143423], name:"Las Vegas, NV, USA", date:"", link:""},
-      {pos:[34.049750, -118.240108], name:"Los Angeles, CA, USA", date:"", link:""},
-      {pos:[37.773963, -122.414943], name:"San Francisco, CA, United States", date:"", link:""},
-
-      {pos:[48.856353, 2.349118], name:"Paris, France", date:"", link:""},
-      {pos:[41.905898, 12.496851], name:"Rome, Italy", date:"", link:""},
-      {pos:[48.206873, 16.375933], name:"Vienna, Austria", date:"", link:""},
-      {pos:[50.111441, 8.683935], name:"Frankfurt, Germany", date:"", link:""},
-      {pos:[52.520353, 13.397606], name:"Berlin, Germany", date:"", link:""},
-      {pos:[52.382178, 4.901363], name:"Amsterdam, Netherlands", date:"", link:""},
-      {pos:[52.382178, 4.901363], name:"Amsterdam, Netherlands", date:"", link:""},
-      {pos:[59.918914, 10.753525], name:"Oslo, Norway", date:"", link:""},
-      {pos:[62.674221, 8.566172], name:"Sunndalsora, Norway", date:"", link:""},
-      {pos:[59.337975, 18.069251], name:"Stockholm, Sweden", date:"", link:""},
+      {
+        pos: "Addis Ababa, Ethiopia",
+        name: "Addis Ababa, Ethiopia",
+        date: "May 2015",
+        link: ""
+      }, {
+        pos: "Kiev, Ukraine",
+        name: "Kiev, Ukraine",
+        date: "September 2017",
+        link: ""
+      }, {
+        pos: [
+          49.844340, 24.034888
+        ],
+        name: "Lviv, Ukraine",
+        date: "September 2017",
+        link: ""
+      }, {
+        pos: "Chernobyl, Ukraine",
+        name: "Chernobyl, Ukraine",
+        date: "September 2017",
+        link: ""
+      }, {
+        pos: "Tokyo, Japan",
+        name: "Tokyo, Japan",
+        date: "October 2014, June 2017",
+        link: ""
+      }, {
+        pos: "Osaka, Japan",
+        name: "Osaka, Japan",
+        date: "October 2014",
+        link: ""
+      }, {
+        pos: "Nara, Japan",
+        name: "Nara, Japan",
+        date: "June 2017",
+        link: ""
+      }, {
+        pos: "Kiyoto, Japan",
+        name: "Kiyoto, Japan",
+        date: "June 2017",
+        link: ""
+      }, {
+        pos: "Hiroshima, Japan",
+        name: "Hiroshima, Japan",
+        date: "June 2017",
+        link: ""
+      }, {
+        pos: "Sydney, Australia",
+        name: "Sydney, Australia",
+        date: "Mar 2017",
+        link: ""
+      }, {
+        pos: "Bangkok, Thailand",
+        name: "Bangkok, Thailand",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          7.949674, 98.321200
+        ],
+        name: "Phuket, Thailand",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          -8.417036, 115.181168
+        ],
+        name: "Bali, Indonesia",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          22.278545, 114.173708
+        ],
+        name: "Hong Kong",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          1.356545, 103.878514
+        ],
+        name: "Singapore",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          3.139018, 101.685957
+        ],
+        name: "Kuala Lumpur, Malaysia",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          3.139018, 101.685957
+        ],
+        name: "Kuala Lumpur, Malaysia",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          24.737871, 46.652076
+        ],
+        name: "Riyadh, Saudi Arabia",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          21.291310, 39.220721
+        ],
+        name: "Jeddah, Saudi Arabia",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          29.376588, 47.977661
+        ],
+        name: "Kuwait City, Kuwait",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          25.218046, 55.267532
+        ],
+        name: "Dubai, United Arab Emirates",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          24.458665, 54.375963
+        ],
+        name: "Abu Dhabi, United Arab Emirates",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          25.355906, 55.422020
+        ],
+        name: "Sharjah, United Arab Emirates",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          24.140932, 55.794922
+        ],
+        name: "Al-Ain, United Arab Emirates",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          23.594644, 58.405117
+        ],
+        name: "Muscat, Oman",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          24.352803, 56.705328
+        ],
+        name: "Sohar, Oman",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          25.292014, 51.526406
+        ],
+        name: "Doha, Qatar",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          40.441016, -79.988399
+        ],
+        name: "Pittsburgh, PA, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          39.954006, -75.161987
+        ],
+        name: "Philadelphia, PA, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          25.763531, -80.196502
+        ],
+        name: "Miami, FL, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          28.540228, -81.379059
+        ],
+        name: "Orlando, FL, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          41.877631, -87.620049
+        ],
+        name: "Chicago, IL, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          42.362482, -71.054063
+        ],
+        name: "Boston, MA, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          40.710683, -74.007181
+        ],
+        name: "New York City, NY, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          38.906872, -77.036557
+        ],
+        name: "Washington, DC, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          36.170939, -115.143423
+        ],
+        name: "Las Vegas, NV, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          34.049750, -118.240108
+        ],
+        name: "Los Angeles, CA, USA",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          37.773963, -122.414943
+        ],
+        name: "San Francisco, CA, United States",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          48.856353, 2.349118
+        ],
+        name: "Paris, France",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          41.905898, 12.496851
+        ],
+        name: "Rome, Italy",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          48.206873, 16.375933
+        ],
+        name: "Vienna, Austria",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          50.111441, 8.683935
+        ],
+        name: "Frankfurt, Germany",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          52.520353, 13.397606
+        ],
+        name: "Berlin, Germany",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          52.382178, 4.901363
+        ],
+        name: "Amsterdam, Netherlands",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          52.382178, 4.901363
+        ],
+        name: "Amsterdam, Netherlands",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          59.918914, 10.753525
+        ],
+        name: "Oslo, Norway",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          62.674221, 8.566172
+        ],
+        name: "Sunndalsora, Norway",
+        date: "",
+        link: ""
+      }, {
+        pos: [
+          59.337975, 18.069251
+        ],
+        name: "Stockholm, Sweden",
+        date: "",
+        link: ""
+      }
     ]
 
     NgMap.getMap().then(function(map) {
       pc.map = map;
 
-      pc.showCustomMarker= function(evt,input) {
-        map.showInfoWindow("",input);
+      pc.showCustomMarker = function(evt, input) {
+        map.showInfoWindow("", input);
       };
 
-      pc.closeCustomMarker= function(evt) {
+      pc.closeCustomMarker = function(evt) {
         this.style.display = 'none';
       };
     });
@@ -115,8 +378,13 @@
         date: "April - August 2016",
         service: "Web Development",
         images: [
-          {image: "Kesa1.png", id: 0},
-          {image: "Kesa2.png", id: 1}
+          {
+            image: "Kesa1.png",
+            id: 0
+          }, {
+            image: "Kesa2.png",
+            id: 1
+          }
         ],
         show: true,
         link: "https://github.com/yelsayed/Kesa",
@@ -131,7 +399,10 @@
         date: "Jan - May 2016",
         service: "Embedded Systems",
         images: [
-          {image: "EmbeddedSystems.jpg", id: 0}
+          {
+            image: "EmbeddedSystems.jpg",
+            id: 0
+          }
         ],
         show: true,
         link: "https://github.com/Sharjeel-Khan/MC9S12C128",
@@ -146,13 +417,28 @@
         date: "September - November 2016",
         service: "3D Printing and Laser Cutting",
         images: [
-          {image: "Pascaline1.png", id: 0},
-          {image: "Pascaline2.jpg", id: 1},
-          {image: "Pascaline3.jpg", id: 2},
-          {image: "Pascaline4.jpg", id: 3},
-          {image: "Pascaline5.jpg", id: 4},
-          {image: "Pascaline6.jpg", id: 5},
-          {image: "Pascaline7.jpg", id: 6}
+          {
+            image: "Pascaline1.png",
+            id: 0
+          }, {
+            image: "Pascaline2.jpg",
+            id: 1
+          }, {
+            image: "Pascaline3.jpg",
+            id: 2
+          }, {
+            image: "Pascaline4.jpg",
+            id: 3
+          }, {
+            image: "Pascaline5.jpg",
+            id: 4
+          }, {
+            image: "Pascaline6.jpg",
+            id: 5
+          }, {
+            image: "Pascaline7.jpg",
+            id: 6
+          }
         ],
         show: true,
         link: "",
@@ -167,8 +453,11 @@
         date: "December 2016",
         service: "3D Printing and Laser Cutting",
         images: [
-          {image: "ArcadeMachine1.png", id: 0}
-      ],
+          {
+            image: "ArcadeMachine1.png",
+            id: 0
+          }
+        ],
         show: true,
         link: "",
         location: "None"
@@ -311,17 +600,38 @@
       }
     };
 
-    this.nextImage = function(project) {
-      if (project.imageindex < project.images.length - 1) {
-        project.imageindex += 1;
+    var data = {
+      params: {
+        rss_url: 'https://medium.com/feed/@sharjeelkhan_41359'
       }
     };
 
-    this.prevImage = function(project) {
-      if (project.imageindex > 0) {
-        project.imageindex -= 1;
-      }
-    };
+    $http.get('https://api.rss2json.com/v1/api.json', data)
+    .then(function successCallback(response) {
+        var regexp = /src="([^"]*)"/g;
+        var match = "";
+        var src = "";
+        var post = {};
+        var temp = {};
+        var date = new Date();
+        for(var index in response.data.items){
+          temp = response.data.items[index];
+          post = {};
+          post.title = temp.title;
+          post.categories = temp.categories;
+          date = temp.pubDate.split(" ")[0].split("-")
+          post.date = date[2]+"/"+date[1]+"/"+date[0];
+          post.link = temp.guid;
+          match = temp.content.match(regexp);
+          match = match[0].substr(5,match[0].length-6);
+          post.pic = match;
+          pc.posts.push(post);
+        }
+
+     }, function errorCallback(response) {
+        console.log(response);
+     });
+
   });
 
 })();
