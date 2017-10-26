@@ -603,6 +603,9 @@
     var data = {
       params: {
         rss_url: 'https://medium.com/feed/@sharjeelkhan_41359'
+      },
+      headers: {
+        'Access-Control-Allow-Origin': "http://www.smkhan.me"
       }
     };
 
