@@ -466,7 +466,7 @@
 
     this.filters = [
       {
-        name: "All",
+        name: "All Projects",
         filter: "all"
       }, {
         name: "Web Development",
@@ -477,98 +477,6 @@
       }, {
         name: "3D Modeling",
         filter: "3d-modeling"
-      }
-    ];
-
-    this.skills = [
-      {
-        name: "AngularJS",
-        filter: "web",
-        percentage: "85",
-        show: true
-      }, {
-        name: "Django",
-        filter: "web",
-        percentage: "85",
-        show: true
-      }, {
-        name: "jQuery",
-        filter: "web",
-        percentage: "80",
-        show: true
-      }, {
-        name: "Bootstrap",
-        filter: "web",
-        percentage: "75",
-        show: true
-      }, {
-        name: "NodeJS",
-        filter: "web",
-        percentage: "70",
-        show: true
-      }, {
-        name: "Python",
-        filter: "programming",
-        percentage: "95",
-        show: false
-      }, {
-        name: "Java",
-        filter: "programming",
-        percentage: "85",
-        show: false
-      }, {
-        name: "SML",
-        filter: "programming",
-        percentage: "85",
-        show: false
-      }, {
-        name: "Latex",
-        filter: "programming",
-        percentage: "85",
-        show: false
-      }, {
-        name: "C",
-        filter: "programming",
-        percentage: "80",
-        show: false
-      }, {
-        name: "Sublime",
-        filter: "apps",
-        percentage: "95",
-        show: false
-      }, {
-        name: "Atom",
-        filter: "apps",
-        percentage: "85",
-        show: false
-      }, {
-        name: "Solidworks",
-        filter: "apps",
-        percentage: "85",
-        show: false
-      }, {
-        name: "Vim",
-        filter: "apps",
-        percentage: "80",
-        show: false
-      }, {
-        name: "Adobe Indesign",
-        filter: "apps",
-        percentage: "70",
-        show: false
-      }
-    ];
-
-    this.skillfilters = [
-      {
-        name: "Web Development",
-        filter: "web"
-      }, {
-        name: "Programming",
-        filter: "programming"
-      }, {
-        name: "Applications",
-        filter: "apps"
       }
     ];
 
@@ -589,17 +497,27 @@
       }
     };
 
-    this.filterSkills = function(type) {
-      var i;
-      for (i = 0; i < this.skills.length; i++) {
-        if (type === this.skills[i].filter) {
-          this.skills[i].show = true;
-        } else {
-          this.skills[i].show = false;
-        }
-      }
-    };
+    this.publications=[
+      {
+        title:"Formalization of Automated Trading Systems in a Concurrent Linear Framework",
+        link:"/files/LinearityTLLA_2018.pdf",
+        authors:[{name:"Iliano Cervesato, ",
+                  link:"http://www.cs.cmu.edu/~iliano/"},
+                 {name:"Sharjeel Khan, ",
+                  link:"http://www.smkhan.me/"},
+                 {name:"Giselle Reis, ",
+                  link:"http://www.gisellereis.com/"},
+                  {name:"Dragisa Zunic",
+                   link:"https://sites.google.com/site/dragisazunic/"}],
+        type:"Workshop",
+        venue_name:"Linearity & TLLA",
+        venue_link:"http://lipn.univ-paris13.fr/TLLALinearity18/",
+        year:2018
+      },
+    ];
 
+
+    /*
     var data = {
       params: {
         rss_url: 'https://medium.com/feed/@sharjeelkhan_41359'
@@ -633,7 +551,7 @@
 
      }, function errorCallback(response) {
         console.log(response);
-     });
+     });*/
 
   });
 

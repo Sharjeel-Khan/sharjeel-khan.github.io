@@ -5,23 +5,31 @@
 }
 
 #aboutmepicture {
-  height: 700px;
+  height: 550px;
+  margin-left: 50px;
   border: 1px solid;
 }
 
+#navbarpicture {
+  height: 100px;
+  margin-top: -40px;
+}
 
 .arrows {
   padding-top: 15%;
 }
 
-.gallery-image {}
-
 .vis-hidden {
   visibility: hidden;
 }
 
-#resume {
-  background-color: #E74C3C
+.resume {
+  background-color: #2980b9;
+}
+
+.resume:hover {
+  background-color:#74b9ff;
+  color:#fff;
 }
 
 .thumbnails {
@@ -33,26 +41,10 @@
   border: 1px solid;
 }
 
-.flat div {
-  color: #2c3e50;
-  background-color: #fff;
-  height: 50px;
-  width: auto;
-  border: none;
-  font-size: 20px;
-  margin-bottom: 10px;
-  padding-top: 10px;
+#research a{
+  color:#fff;
 }
 
-.flat div:hover {
-  color: #fff;
-  background-color: #E7767A;
-}
-
-.flat div:active {
-  color: #fff;
-  background-color: #E78776;
-}
 
 .flatskill div {
   color: #000000;
