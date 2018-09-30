@@ -272,7 +272,7 @@
             <tr>
               <th>Title</th>
               <th>Authors</th>
-              <th>Type</th>
+              <!--<th>Type</th>-->
               <th>Proceedings/Journal</th>
               <th>Year</th>
             </tr>
@@ -283,7 +283,7 @@
               <td>
                 <a ng-repeat="author in pub.authors" ng-href="{{author.link}}">{{author.name}}</a>
               </td>
-              <td>{{pub.type}}</td>
+              <!-- <td>{{pub.type}}</td> -->
               <td><a ng-href="{{pub.venue_link}}">{{pub.venue_name}}</a></td>
               <td>{{pub.year}}</td>
             </tr>
