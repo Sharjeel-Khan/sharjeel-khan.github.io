@@ -510,7 +510,7 @@
                   {name:"Dragisa Zunic",
                    link:"https://sites.google.com/site/dragisazunic/"}],
         type:"Workshop",
-        venue_name:"Linearity & TLLA Workshop",
+        venue_name:"Linearity & TLLA",
         venue_link:"http://lipn.univ-paris13.fr/TLLALinearity18/",
         year:2018
       },
