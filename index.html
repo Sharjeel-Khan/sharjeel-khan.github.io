@@ -92,7 +92,7 @@
           <div class="intro-text">
             <span class="name">Sharjeel Khan</span>
             <hr class="star-light">
-            <span class="skills">First Year PhD Student at Georgia Institute of Technology</span>
+            <span class="skills">Second Year PhD Student at Georgia Institute of Technology</span>
           </div>
         </div>
       </div>
@@ -116,14 +116,14 @@
           <div class="row">
             <div class="col-lg-12">
               <p>
-                Hey, my name is Sharjeel Khan. My primary interest is in Programming Languages, Logic and Software Verification research.
+                Hey, my name is Sharjeel Khan. My primary interest is in Programming Languages, Program Analysis, Logic and Software Verification research.
 
-                Currently, I am a first year PhD student at Georgia Institute of Technology working on Predicting Dynamic Probabilistic Program Paths with <a href="https://sites.google.com/site/profsantoshpande/">Professor Santosh Pande</a>.
+                Currently, I am a second year PhD student at Georgia Institute of Technology working on using Machine Learning and Deep Learning algorithms for program analysis under the tutelage of <a href="https://sites.google.com/site/profsantoshpande/">Professor Santosh Pande</a>.
               </p>
             </div>
             <div class="col-lg-12">
               <p>
-                  In my free time, I blog about my life and my interests on <a href="https://medium.com/@sharjeelkhan_41359">Medium</a>. My interests are playing video games or board games, watching TV shows (On a Brooklyn 99 binge), reading manga (One Piece is the my all-time favorite) and eating new cuisines or new dishes at restaurants.
+                  In my free time, I blog about my life and my interests on <a href="https://medium.com/@sharjeelkhan_41359">Medium</a>. My interests are playing video games or board games, watching TV shows (Always watching Brooklyn 99), reading manga (One Piece is the my all-time favorite) and eating new cuisines or new dishes at restaurants.
                   My absolute favorite thing is to code new projects or participate in online programming competitions while listening to music on Spotify.
               </p>
             </div>
@@ -169,13 +169,30 @@
       <div class="row">
         <div class="col-lg-12">
           <hr>
-          <h3>Predicting Dynamic Probalistic Program Paths</h3>
+          <h3>Detecting and mitigating side-channel attacks during runtime</h3>
           <h4><a href="https://sites.google.com/site/profsantoshpande/">Professor Santosh Pande</a></h4>
           <p>
-             We are building an intermediate representation (IR) pass which creates a path profile for the program.
-             Using the path profile and a trained decision tree classifier about program paths, we are trying to predict dynamic paths used in the program with a high probability of accuracy alongside a minimum overhead.
-             As a result, we will be able to find all unused code sections for removal.
-             This improves the program’s size, improves the program’s security and decreases your precious time during compilation.
+             We are trying to detect side-channel attacks during runtime with our Beacon framework.
+          </p>
+          <br/>
+
+          <hr>
+          <h3>Predicting Call Chain using Sequence to Sequence Model</h3>
+          <h4><a href="https://sites.google.com/site/profsantoshpande/">Professor Santosh Pande</a></h4>
+          <p>
+             We built an LLVM intermediate representation (IR) pass which creates produces the call chain for each program.
+             We are using Tensorflow's sequence to sequence model to take a section of the call chain to predict the next function to be executed.
+             Using this model, our beacon scheduler can try to schedule programs to provide highest throughput. 
+          </p>
+          <br/>
+
+          <hr>
+          <h3>Predicting Dynamic Program Paths using Decision Trees</h3>
+          <h4><a href="https://sites.google.com/site/profsantoshpande/">Professor Santosh Pande</a></h4>
+          <p>
+             We built an LLVM intermediate representation (IR) pass which creates a path profile for the program.
+             Using the path profile and a trained decision tree classifier on path profile, we are trying to predict dynamic paths used in the program with a high probability of accuracy alongside a minimum overhead as early as possible.
+             The early prediction helps detect both control and non-control data attacks so we can rectify these attacks.
           </p>
           <br/>
 
@@ -183,7 +200,7 @@
           <h3><a href="https://www.cs.cmu.edu/~iliano/projects/metaCLF2/index.shtml">metaCLF2</a></h3>
           <h4><a href="https://www.cs.cmu.edu/~iliano/">Professor Iliano Cervesato</a> and <a href="http://www.gisellereis.com/">Professor Giselle Reis</a></h4>
           <p>
-            We researched about financial systems more specifically Automated Trading Systems (ATS) where we formalized ATS in Celf so we can verify properties of the system by implementing the meta-theory in Celf.
+            We researched about financial systems more specifically Automated Trading Systems (ATS) where we formalized ATS in Celf, a concurrent logic framework (CLF), so we can verify conccurrent, distributed, and parallel (CDP) properties of the system by implementing the meta-theory in Celf.
           </p>
         </div>
       </div>
@@ -388,7 +405,7 @@
           </div>
           <div class="footer-col col-md-6">
             <h3 style="color:#FFFFFF;">My Information</h3>
-            <p><u>Address:</u> Klaus Building Office 2337</p>
+            <p><u>Address:</u> Klaus Advanced Computing Building 2337, Atlanta, GA 30308</p>
             <p><u>Phone Number:</u> (404) 436-2321</p>
             <p><u>Email:</u> smkhan [at] gatech [dot] com</p>
           </div>
@@ -399,7 +416,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            Copyright &copy; Sharjeel Khan 2018
+            Copyright &copy; Sharjeel Khan 2019
           </div>
         </div>
       </div>
