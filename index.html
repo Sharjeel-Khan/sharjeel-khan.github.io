@@ -56,6 +56,7 @@
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#travel">Travel</a>
         </li>
@@ -168,10 +169,10 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3">
           <div class="resume-content">
-            <h3 class="mb-0">Detecting and mitigating side-channel attacks during runtime</h3>
+            <h3 class="mb-0">Detecting and mitigating side-channel attacks at runtime</h3>
             <div class="subheading mb-1">Georgia Institute of Technology</div>
             <p>
-              We are trying to detect side-channel attacks during runtime with our Beacon framework.
+              We are trying to detect side-channel attacks at runtime with our Beacon framework.
             </p>
           </div>
           <div class="resume-date text-md-right">
@@ -184,9 +185,9 @@
             <h3 class="mb-0">Predicting Call Chain using Sequence to Sequence Model</h3>
             <div class="subheading mb-1">Georgia Institute of Technology</div>
             <p>
-               We built an LLVM intermediate representation (IR) pass which creates produces the call chain for each program.
-               We are using Tensorflow's sequence to sequence model to take a section of the call chain to predict the next function to be executed.
-               Using this model, our scheduler can try to schedule programs to provide highest throughput.
+               We built an LLVM intermediate representation (IR) pass which produces the call chain for each program.
+               We are using Tensorflow's sequence to sequence model to take a section of the call chain and use it to predict the next function in call chain.
+               Using this model, our scheduler can try to schedule programs based on the next function of each program.
             </p>
           </div>
           <div class="resume-date text-md-right">
@@ -199,9 +200,9 @@
             <h3 class="mb-0">Predicting Dynamic Program Paths using Decision Trees</h3>
             <div class="subheading mb-1">Georgia Institute of Technology</div>
             <p>
-              We built an LLVM intermediate representation (IR) pass which creates a path profile for the program.
-              Using the path profile and a trained decision tree classifier on path profile, we are trying to predict dynamic paths used in the program with a high probability of accuracy alongside a minimum overhead as early as possible.
-              The early prediction helps detect both control and non-control data attacks so we can rectify these attacks.
+              We built an LLVM intermediate representation (IR) pass which creates a path profile for the entire program.
+              Using the path profile and a trained decision tree classifier on path profile, we are trying to predict the dynamic path early in the program with a high accuracy alongside a minimum overhead.
+              The early prediction allows us to check if an attacker changes the path by either control or non-control data attacks.
             </p>
           </div>
           <div class="resume-date text-md-right">
@@ -216,7 +217,7 @@
             <p>
               We researched about financial systems more specifically Automated Trading Systems (ATS).
               We formalized ATS in Celf, a concurrent logic framework (CLF), so we can prove financial properties like no crossed/locked market.
-              In addition, we built the meta-theory in Celf, so Celf could get cerify these properties automatically.
+              In addition, we built the meta-theory in Celf, so Celf could verify these properties automatically.
             </p>
           </div>
           <div class="resume-date text-md-right">
