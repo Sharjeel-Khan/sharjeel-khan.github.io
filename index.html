@@ -24,6 +24,8 @@
   <link href="css/mycss.css" rel="stylesheet">
   <link href="css/resume.min.css" rel="stylesheet">
 
+
+
 </head>
 
 <body id="page-top">
@@ -57,13 +59,15 @@
           <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#travel">Travel</a>
-        </li>
+
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#blog">Blog Articles</a>
         </li>
         --->
+
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#travels">Travel</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -186,8 +190,8 @@
             <div class="subheading mb-1">Georgia Institute of Technology</div>
             <p>
                We built an LLVM intermediate representation (IR) pass which produces the call chain for each program.
-               We are using Tensorflow's sequence to sequence model to take a section of the call chain and use it to predict the next function in call chain.
-               Using this model, our scheduler can try to schedule programs based on the next function of each program.
+               We are using Tensorflow's sequence to sequence model to take a section of the call chain and predict the next function in call chain.
+               Using this model, our scheduler can schedule processes based on their next functions being called.
             </p>
           </div>
           <div class="resume-date text-md-right">
@@ -279,18 +283,23 @@
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="travels">
-      <div class="w-100">
-
-      </div>
-    </section>
-
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="blog">
       <div class="w-100">
 
       </div>
     </section>
+
+    <hr class="m-0">
     -->
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="travels">
+      <div class="w-100" >
+        <h2 class="mb-0">Travel</h2>
+
+        <div id="chartdiv">
+        </div>
+      </div>
+    </section>
+
   </div>
 
   <!-- Bootstrap core JavaScript -->
@@ -299,6 +308,14 @@
 
   <!-- Plugin JavaScript -->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Travel -->
+  <script src="https://www.amcharts.com/lib/4/core.js"></script>
+  <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+  <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+  <script src="https://www.amcharts.com/lib/4/geodata/usaLow.js"></script>
+  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>

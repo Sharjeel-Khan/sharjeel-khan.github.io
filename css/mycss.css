@@ -20,9 +20,15 @@
   line-height:3.5rem;
 }
 
-.button a:hover{background-color:#6e89d4}
+.button a:hover{background-color:#6e89d4;}
 
 .pub a {
   font-size:1rem;
   line-height: normal;
+}
+
+#chartdiv {
+  width: 1050px;
+  height: 700px;
+  border: 1px solid;
 }
