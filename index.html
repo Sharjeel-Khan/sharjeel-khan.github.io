@@ -48,9 +48,9 @@
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#about">About Me</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#research">Research</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#publications">Publications</a>
         </li>
@@ -167,16 +167,17 @@
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="research">
+    <!-- <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="research">
       <div class="w-100">
         <h2 class="mb-3">Research Topics</h2>
 
+
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3">
           <div class="resume-content">
-            <h3 class="mb-0">Detecting and mitigating side-channel attacks at runtime</h3>
+            <h3 class="mb-0">Partitioning caches to improve performance of processes using IntelCAT</h3>
             <div class="subheading mb-1">Georgia Institute of Technology</div>
             <p>
-              We are trying to detect side-channel attacks at runtime with our Beacon framework.
+              
             </p>
           </div>
           <div class="resume-date text-md-right">
@@ -186,12 +187,10 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3">
           <div class="resume-content">
-            <h3 class="mb-0">Predicting Call Chain using Sequence to Sequence Model</h3>
+            <h3 class="mb-0">Detecting and Mitigating Cache-Based Side Channel Attacks using a Scheduler framework</h3>
             <div class="subheading mb-1">Georgia Institute of Technology</div>
             <p>
-              We built an LLVM intermediate representation (IR) pass which produces the call chain for each program.
-              We are using Tensorflow's sequence to sequence model to take a section of the call chain and predict the next function in the call chain.
-              Using this model, our scheduler can schedule processes based on their next functions being called.
+              We used our Beacons framework to build a scheduler that uses cache misses to detect cache-based side-channel attacks.
             </p>
           </div>
           <div class="resume-date text-md-right">
@@ -201,7 +200,7 @@
 
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3">
           <div class="resume-content">
-            <h3 class="mb-0">Predicting Dynamic Program Paths using Decision Trees</h3>
+            <h3 class="mb-0">Predicting Dynamic Program Paths using Decision Trees and Sequence to Sequence Model</h3>
             <div class="subheading mb-1">Georgia Institute of Technology</div>
             <p>
               We built an LLVM intermediate representation (IR) pass which creates a path profile for the entire program.
@@ -231,13 +230,35 @@
         </div>
 
       </div>
-    </section>
+    </section> -->
 
     <hr class="m-0">
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="publications">
       <div class="w-100">
         <h2 class="mb-3">Publications</h2>
+
+        <h3 class="mb-1">Under Review</h3>
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3">
+          <div class="resume-content">
+            <div class="subheading">
+              Biscuit: A Compiler Assisted Scheduler for Detecting and Mitigating Cache-Based Side Channel Attacks
+            </div>
+            <p>
+              <strong>Sharjeel Khan</strong>, Girish Mururu, and Santosh Pande.
+            </p>
+            <div class="row">
+              <div class="col-sm-2 button pub">
+                <a href="https://arxiv.org/abs/2003.03850" class="btn btn-sm btn-outline ">
+                  <i class="fa fa-file-pdf"></i> Paper
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="resume-date text-md-right">
+            <span class="text-primary">Preprint </span>
+          </div>
+        </div>
 
         <h3 class="mb-1">Workshop Papers</h3>
         <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-3">
@@ -250,7 +271,7 @@
             </p>
             <div class="row">
               <div class="col-sm-2 button pub">
-                <a href="/files/papers/Linearity18.pdf" class="btn btn-sm btn-outline ">
+                <a href="https://arxiv.org/abs/1904.06844v1" class="btn btn-sm btn-outline ">
                   <i class="fa fa-file-pdf"></i> Paper
                 </a>
               </div>
