@@ -36,6 +36,7 @@
         "url": "https://github.com/StartBootstrap/startbootstrap-resume.git"
     },
     "dependencies": {
+        "@amcharts/amcharts4": "^4.10.16",
         "bootstrap": "4.5.3"
     },
     "devDependencies": {

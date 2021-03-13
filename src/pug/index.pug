@@ -41,6 +41,8 @@ html(lang='en')
                         a.nav-link.js-scroll-trigger(href='#about') About
                     li.nav-item
                         a.nav-link.js-scroll-trigger(href='#publications') Publications
+                    li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#travel') Travel
                     //- li.nav-item
                     //-     a.nav-link.js-scroll-trigger(href='#skills') Skills
                     //- li.nav-item
@@ -193,6 +195,18 @@ html(lang='en')
                                     | Linearity & TLLA Workshop 2018
             hr.m-0
 
+
+            // Travel
+            section#travel.resume-section
+                .resume-section-content
+                    h2.mb-2 Travel 
+
+                    #chartdiv
+
+
+
+            hr.m-0
+
             //- // Skills
             //- section#skills.resume-section
             //-     .resume-section-content
@@ -305,6 +319,11 @@ html(lang='en')
 
         // Third party plugin JS
         script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js')
+        script(src='https://www.amcharts.com/lib/4/core.js')
+        script(src='https://www.amcharts.com/lib/4/maps.js')
+        script(src='https://www.amcharts.com/lib/4/geodata/worldLow.js')
+        script(src='https://www.amcharts.com/lib/4/geodata/usaLow.js')
+        script(src='https://www.amcharts.com/lib/4/themes/animated.js')
 
         // Core theme JS
         script(src='js/scripts.js')
