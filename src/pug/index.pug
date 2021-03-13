@@ -8,7 +8,7 @@ html(lang='en')
         meta(name='description', content='')
         meta(name='author', content='')
 
-        title Resume - Start Bootstrap Theme
+        title Sharjeel Khan's website
 
         link(rel='icon', type='image/x-icon', href='assets/img/favicon.ico')
 
@@ -18,6 +18,7 @@ html(lang='en')
         // Google fonts
         link(href='https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700', rel='stylesheet', type='text/css')
         link(href='https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i', rel='stylesheet', type='text/css')
+        <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
 
         // Core theme CSS (includes Bootstrap)
         link(href='css/styles.css', rel='stylesheet')
@@ -27,224 +28,276 @@ html(lang='en')
         // Navigation
         nav#sideNav.navbar.navbar-expand-lg.navbar-dark.bg-primary.fixed-top
             a.navbar-brand.js-scroll-trigger(href='#page-top')
-                span.d-block.d-lg-none Clarence Taylor
+                span.d-block.d-lg-none Sharjeel Khan
                 span.d-none.d-lg-block
-                    img.img-fluid.img-profile.rounded-circle.mx-auto.mb-2(src='assets/img/profile.jpg', alt='')
+                    img.img-fluid.img-profile.rounded-circle.mx-auto.mb-2(src='assets/img/SK.png', alt='')
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
                 span.navbar-toggler-icon
             #navbarSupportedContent.collapse.navbar-collapse
                 ul.navbar-nav
                     li.nav-item
+                        a.nav-link.js-scroll-trigger(href='#home') Home
+                    li.nav-item
                         a.nav-link.js-scroll-trigger(href='#about') About
                     li.nav-item
-                        a.nav-link.js-scroll-trigger(href='#experience') Experience
-                    li.nav-item
-                        a.nav-link.js-scroll-trigger(href='#education') Education
-                    li.nav-item
-                        a.nav-link.js-scroll-trigger(href='#skills') Skills
-                    li.nav-item
-                        a.nav-link.js-scroll-trigger(href='#interests') Interests
-                    li.nav-item
-                        a.nav-link.js-scroll-trigger(href='#awards') Awards
+                        a.nav-link.js-scroll-trigger(href='#publications') Publications
+                    //- li.nav-item
+                    //-     a.nav-link.js-scroll-trigger(href='#skills') Skills
+                    //- li.nav-item
+                    //-     a.nav-link.js-scroll-trigger(href='#interests') Interests
+                    //- li.nav-item
+                    //-     a.nav-link.js-scroll-trigger(href='#awards') Awards
 
         // Page Content
         .container-fluid.p-0
 
+            // Home
+            section#home.resume-section
+                .resume-section-content
+                    .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
+                        .flex-grow-1
+                            h1.mb-0
+                                | Sharjeel Khan
+                            .subheading.mb-0
+                                | Third Year Computer Science PhD Student at Georgia Institute of Technology
+                            .heading.mb-0
+                                | Klaus Advanced Computing Building 2337, Atlanta, Georgia 30332
+                            .heading.mb-3
+                                a(href='mailto:smkhan@gatech.edu') smkhan [at] gatech [dot] edu
+                            .social-icons
+                                a.social-icon(href='https://www.linkedin.com/in/sharjeel-khan/')
+                                    i.fab.fa-linkedin-in
+                                a.social-icon(href='https://github.com/Sharjeel-Khan')
+                                    i.fab.fa-github
+                                a.social-icon(href='https://scholar.google.com/citations?user=Ww7PDH4AAAAJ&hl=en')
+                                    i.ai.ai-google-scholar
+                                a.social-icon(href='https://dblp.uni-trier.de/pers/hd/k/Khan:Sharjeel')
+                                    i.ai.ai-dblp
+
+                        .flex-shrink-0
+                            img.img-fluid.img-profile.rounded-circle#profile(src='assets/img/profile.jpeg')
+                    
+
+            hr.m-0
+
             // About
             section#about.resume-section
-                .resume-section-content
-                    h1.mb-0
-                        | Clarence 
-                        span.text-primary Taylor
-                    .subheading.mb-5
-                        | 3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 · 
-                        a(href='mailto:name@email.com') name@email.com
-                    p.lead.mb-5
-                        | I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.
-                    .social-icons
-                        a.social-icon(href='#')
-                            i.fab.fa-linkedin-in
-                        a.social-icon(href='#')
-                            i.fab.fa-github
-                        a.social-icon(href='#')
-                            i.fab.fa-twitter
-                        a.social-icon(href='#')
-                            i.fab.fa-facebook-f
-
-            hr.m-0
-
-            // Experience
-            section#experience.resume-section
                .resume-section-content
-                    h2.mb-5 Experience
-
+                    h2.mb-5 About Me                    
+                    
                     .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
                         .flex-grow-1
-                            h3.mb-0 Senior Web Developer
-                            .subheading.mb-3 Intelitec Solutions
+                            p 
+                                | Hey, my name is Sharjeel Khan. I am a third-year Computer Science Ph.D. student at Georgia Institute of Technology working with <a href="https://sites.google.com/site/profsantoshpande/">Dr. Santosh Pande</a>.  
+                                | My research interests lie in programming languages, compilers and security research. 
+                                | I am working on leveraging machine learning and deep learning algorithms for improving program analysis and program verification techniques. 
+                                | Currently, I am working on utilizing reinforcement learning for improving performance in SAT solvers and program debloating.
+                            
                             p
-                                | Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.
-                        .flex-shrink-0
-                            span.text-primary March 2013 - Present
+                                | I am originally from Hyderabad, India, but I lived my entire childhood in the Middle East (Dubai then Doha).
+                                | I did my undergraduate studies in Computer Science from Carnegie Mellon University.
+                                | Before I started my Ph.D., I was a Research Assistant at Carnegie Mellon University working under <a href="https://www.cs.cmu.edu/~iliano/">Dr. Iliano Cervesato</a> and <a href="http://www.gisellereis.com/">Dr. Giselle Reis</a>
 
-                    .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
-                        .flex-grow-1
-                            h3.mb-0 Web Developer
-                            .subheading.mb-3 Intelitec Solutions
                             p
-                                | Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.
-                        .flex-shrink-0
-                            span.text-primary December 2011 - March 2013
+                                |   In my free time, I learn about new tools to use in my side projects.
+                                |   Currently, I am just trying to add more functionalities to this website by adding a map of my travels and displaying my blog posts from Medium here.
+                                |   Other hobbies range from playing video games (currently Destiny) or board games (Red Dragon Inn), watching TV shows (currently Wandavision), reading manga (One Piece), or trying out new restaurants.
+ 
+                            p
+                                |   In my free time, I learn about new tools to use in my side projects.
+                                |   Currently, I am just trying to add more functionalities to this website by adding a map of my travels and displaying my blog posts from Medium here.
+                                |   Other hobbies range from playing video games (currently Destiny) or board games (Red Dragon Inn), watching TV shows (currently Wandavision), reading manga (One Piece), or trying out new restaurants.
 
-                    .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
-                        .flex-grow-1
-                            h3.mb-0 Junior Web Designer
-                            .subheading.mb-3 Shout! Media Productions
                             p
-                                | Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.
-                        .flex-shrink-0
-                            span.text-primary July 2010 - December 2011
+                                |   In addition, I love to travel to new countries and to meet new people.
+                                |   I have been to around 20+ countries and 40+ cities.
+                                |   My most recent trip was to Turkey when I backpacked through Istanbul, Ephesus, Cappadocia, and Pamukkale.
+                            //  |   I blog about my travels and my interests on <a href="https://medium.com/@sharjeelkhan_41359">Medium</a>.
 
-                    .d-flex.flex-column.flex-md-row.justify-content-between
-                        .flex-grow-1
-                            h3.mb-0 Web Design Intern
-                            .subheading.mb-3 Shout! Media Productions
-                            p
-                                | Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.
+                            .col-lg-12.text-center.button  
+                                a.btn.btn-lg.btn-outline(href='assets/files/CV.pdf')
+                                    i.fa.fa-file-download 
+                                    | Download CV
+
+
+
                         .flex-shrink-0
-                            span.text-primary September 2008 - June 2010
+                            img.img-responsive#aboutmepicture(src='assets/img/aboutme.jpg', alt='')
 
             hr.m-0
 
-            // Education
-            section#education.resume-section
+            // Publications
+            section#publications.resume-section
                 .resume-section-content
-                    h2.mb-5 Education
+                    h2.mb-5 Publications
 
-                    .d-flex.flex-column.flex-md-row.justify-content-between.mb-5
-                        .flex-grow-1
-                            h3.mb-0 University of Colorado Boulder
-                            .subheading.mb-3 Bachelor of Science
-                            div Computer Science - Web Development Track
-                            p GPA: 3.23
-                        .flex-shrink-0
-                            span.text-primary August 2006 - May 2010
+                    h3.mb-3 Under Review 
+                        .d-flex.flex-column.flex-md-row.justify-content-between.mb-3
+                            .flex-grow-1
+                                .subheading.text-light
+                                    | Effective Cache Apportioning for Performance Isolation Under Compiler Guidance
+                                .subheading.text-light
+                                    | Bodhisatwa Chatterjee, <strong>Sharjeel Khan</strong>, and Santosh Pande.
+                                .row
+                                    .col-sm-2.button.pub
+                                        a.btn.btn-lg.btn-outline(href='https://arxiv.org/abs/2102.09673')
+                                            i.fa.fa-file-pdf
+                                            | Paper
 
-                    .d-flex.flex-column.flex-md-row.justify-content-between
-                        .flex-grow-1
-                            h3.mb-0 James Buchanan High School
-                            .subheading.mb-3 Technology Magnet Program
-                            p GPA: 3.56
-                        .flex-shrink-0
-                            span.text-primary August 2002 - May 2006
+                            .flex-shrink-0.text-md-right
+                                .subheading.text-primary 
+                                    | Preprint
+                        
+                        .d-flex.flex-column.flex-md-row.justify-content-between.mb-3
+                            .flex-grow-1
+                                .subheading.text-light
+                                    | Biscuit: A Compiler Assisted Scheduler for Detecting and Mitigating Cache-Based Side Channel Attacks
+                                .subheading.text-light
+                                    | <strong>Sharjeel Khan</strong>, Girish Mururu, and Santosh Pande.
+                                .row
+                                    .col-sm-2.button.pub
+                                        a.btn.btn-lg.btn-outline(href='https://arxiv.org/abs/2003.03850')
+                                            i.fa.fa-file-pdf
+                                            | Paper
 
+                            .flex-shrink-0.text-md-right
+                                .subheading.text-primary 
+                                    | Preprint
+
+                    h3.mb-3 Workshop Papers
+
+                        .d-flex.flex-column.flex-md-row.justify-content-between.mb-3
+                            .flex-grow-1
+                                .subheading.text-light
+                                    | Formalization of Automated Trading Systems in a Concurrent Linear Framework
+                                .subheading.text-light
+                                    | Iliano Cervesato, <strong>Sharjeel Khan</strong>, Giselle Reis, and Dragisa Zunic.
+                                .row
+                                    .col-sm-2.button.pub
+                                        a.btn.btn-lg.btn-outline(href='https://arxiv.org/abs/1904.06844v1')
+                                            i.fa.fa-file-pdf
+                                            | Paper
+
+                                    .col-sm-2.button.pub
+                                        a.btn.btn-lg.btn-outline(href='assets/files/slides/linearity18.pdf')
+                                            i.fa.fa-file-powerpoint
+                                            | Slides
+
+                                    .col-sm-2.button.pub
+                                        a.btn.btn-lg.btn-outline(href='https://github.com/Sharjeel-Khan/financialCLF')
+                                            i.fa.fa-code
+                                            | Code
+
+                            .flex-shrink-0.text-md-right
+                                .subheading.text-primary 
+                                    | Linearity & TLLA Workshop 2018
             hr.m-0
 
-            // Skills
-            section#skills.resume-section
-                .resume-section-content
-                    h2.mb-5 Skills
-                    .subheading.mb-3 Programming Languages & Tools
-                    ul.list-inline.dev-icons
-                        li.list-inline-item
-                            i.fab.fa-html5
-                        li.list-inline-item
-                            i.fab.fa-css3-alt
-                        li.list-inline-item
-                            i.fab.fa-js-square
-                        li.list-inline-item
-                            i.fab.fa-angular
-                        li.list-inline-item
-                            i.fab.fa-react
-                        li.list-inline-item
-                            i.fab.fa-node-js
-                        li.list-inline-item
-                            i.fab.fa-sass
-                        li.list-inline-item
-                            i.fab.fa-less
-                        li.list-inline-item
-                            i.fab.fa-wordpress
-                        li.list-inline-item
-                            i.fab.fa-gulp
-                        li.list-inline-item
-                            i.fab.fa-grunt
-                        li.list-inline-item
-                            i.fab.fa-npm
-                    .subheading.mb-3 Workflow
-                    ul.fa-ul.mb-0
-                        li
-                            span.fa-li
-                                i.fas.fa-check
-                            | Mobile-First, Responsive Design
-                        li
-                            span.fa-li
-                                i.fas.fa-check
-                            | Cross Browser Testing & Debugging
-                        li
-                            span.fa-li
-                                i.fas.fa-check
-                            | Cross Functional Teams
-                        li
-                            span.fa-li
-                                i.fas.fa-check
-                            | Agile Development & Scrum
+            //- // Skills
+            //- section#skills.resume-section
+            //-     .resume-section-content
+            //-         h2.mb-5 Skills
+            //-         .subheading.mb-3 Programming Languages & Tools
+            //-         ul.list-inline.dev-icons
+            //-             li.list-inline-item
+            //-                 i.fab.fa-html5
+            //-             li.list-inline-item
+            //-                 i.fab.fa-css3-alt
+            //-             li.list-inline-item
+            //-                 i.fab.fa-js-square
+            //-             li.list-inline-item
+            //-                 i.fab.fa-angular
+            //-             li.list-inline-item
+            //-                 i.fab.fa-react
+            //-             li.list-inline-item
+            //-                 i.fab.fa-node-js
+            //-             li.list-inline-item
+            //-                 i.fab.fa-sass
+            //-             li.list-inline-item
+            //-                 i.fab.fa-less
+            //-             li.list-inline-item
+            //-                 i.fab.fa-wordpress
+            //-             li.list-inline-item
+            //-                 i.fab.fa-gulp
+            //-             li.list-inline-item
+            //-                 i.fab.fa-grunt
+            //-             li.list-inline-item
+            //-                 i.fab.fa-npm
+            //-         .subheading.mb-3 Workflow
+            //-         ul.fa-ul.mb-0
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-check
+            //-                 | Mobile-First, Responsive Design
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-check
+            //-                 | Cross Browser Testing & Debugging
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-check
+            //-                 | Cross Functional Teams
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-check
+            //-                 | Agile Development & Scrum
 
-            hr.m-0
+            //- hr.m-0
 
-            // Interests
-            section#interests.resume-section
-                .resume-section-content
-                    h2.mb-5 Interests
-                    p
-                        | Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.
-                    p.mb-0
-                        | When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technology advancements in the front-end web development world.
+            //- // Interests
+            //- section#interests.resume-section
+            //-     .resume-section-content
+            //-         h2.mb-5 Interests
+            //-         p
+            //-             | Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skier and novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.
+            //-         p.mb-0
+            //-             | When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring chef, and I spend a large amount of my free time exploring the latest technology advancements in the front-end web development world.
 
-            hr.m-0
+            //- hr.m-0
 
-            // Awards
-            section#awards.resume-section
-                .resume-section-content
-                    h2.mb-5 Awards & Certifications
-                    ul.fa-ul.mb-0
-                        li
-                            span.fa-li
-                                i.fas.fa-trophy.text-warning
-                            | Google Analytics Certified Developer
-                        li
-                            span.fa-li
-                                i.fas.fa-trophy.text-warning
-                            | Mobile Web Specialist - Google Certification
-                        li
-                            span.fa-li
-                                i.fas.fa-trophy.text-warning
-                            | 1
-                            sup st 
-                            | Place - University of Colorado Boulder - Emerging Tech Competition 2009
-                        li
-                            span.fa-li
-                                i.fas.fa-trophy.text-warning
-                            | 1
-                            sup st 
-                            | Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
-                        li
-                            span.fa-li
-                                i.fas.fa-trophy.text-warning
-                            | 2
-                            sup nd 
-                            | Place - University of Colorado Boulder - Emerging Tech Competition 2008
-                        li
-                            span.fa-li
-                                i.fas.fa-trophy.text-warning
-                            | 1
-                            sup st 
-                            | Place - James Buchanan High School - Hackathon 2006
-                        li
-                            span.fa-li
-                                i.fas.fa-trophy.text-warning
-                            | 3
-                            sup rd 
-                            | Place - James Buchanan High School - Hackathon 2005
+            //- // Awards
+            //- section#awards.resume-section
+            //-     .resume-section-content
+            //-         h2.mb-5 Awards & Certifications
+            //-         ul.fa-ul.mb-0
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-trophy.text-warning
+            //-                 | Google Analytics Certified Developer
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-trophy.text-warning
+            //-                 | Mobile Web Specialist - Google Certification
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-trophy.text-warning
+            //-                 | 1
+            //-                 sup st 
+            //-                 | Place - University of Colorado Boulder - Emerging Tech Competition 2009
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-trophy.text-warning
+            //-                 | 1
+            //-                 sup st 
+            //-                 | Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-trophy.text-warning
+            //-                 | 2
+            //-                 sup nd 
+            //-                 | Place - University of Colorado Boulder - Emerging Tech Competition 2008
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-trophy.text-warning
+            //-                 | 1
+            //-                 sup st 
+            //-                 | Place - James Buchanan High School - Hackathon 2006
+            //-             li
+            //-                 span.fa-li
+            //-                     i.fas.fa-trophy.text-warning
+            //-                 | 3
+            //-                 sup rd 
+            //-                 | Place - James Buchanan High School - Hackathon 2005
 
         // Bootstrap core JS
         script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
