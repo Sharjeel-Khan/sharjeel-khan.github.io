@@ -1,6 +1,6 @@
 /*!
     * Start Bootstrap - Resume v6.0.2 (https://startbootstrap.com/theme/resume)
-    * Copyright 2013-2021 Start Bootstrap
+    * Copyright 2013-2023 Start Bootstrap
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE)
     */
     (function ($) {
@@ -125,10 +125,12 @@
           {"title": "Orlando, FL, USA", "latitude": 28.538336, "longitude": -81.379234},
           {"title": "Richmond, VA, USA", "latitude": 37.540726, "longitude": -77.436050},
           {"title": "Stamford, CA, USA", "latitude": 41.053429, "longitude": -73.538734},
-          /* West Cast */
+          /* West Coast */
           {"title": "San Francisco, USA", "latitude": 37.775, "longitude": -122.419 },
           {"title": "Los Angeles, USA", "latitude": 34.052, "longitude": -118.244 },
           {"title": "Las Vegas, USA", "latitude": 36.170, "longitude": -115.140 },
+          {"title": "Seattle, USA", "latitude": 47.608, "longitude": -122.332 },
+          {"title": "Seattle, USA", "latitude": 47.608, "longitude": -122.332 },
     
           /* South America */
     
@@ -148,6 +150,7 @@
           {"title": "Istanbul, Turkey", "latitude": 41.0082, "longitude": 28.9784 },
           {"title": "Ephseus, Turkey", "latitude": 37.9484, "longitude": 27.3681 },
           {"title": "Cappadocia, Turkey", "latitude": 38.640388, "longitude": 34.846306 },
+
           /* Africa */
           {"title": "Addis Ababa", "latitude": 9.0084, "longitude": 38.7575},
     
@@ -167,7 +170,7 @@
           {"title": "Sydney, Australia", "latitude": -33.868820, "longitude": 151.209290 },
     
           {"title": "Hyderabad, India", "latitude": 17.3850, "longitude": 78.4867 },
-          {"title": "Ahmdab, India", "latitude": 23.0225, "longitude": 72.5714 },
+          {"title": "Ahmedabad, India", "latitude": 23.0225, "longitude": 72.5714 },
     
     
           /* Middle East */
