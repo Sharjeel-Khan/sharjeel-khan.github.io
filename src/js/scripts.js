@@ -106,6 +106,8 @@
     
         imageSeries.data = [
           /* North America */
+          {"title": "Vancouver, BC, Canada", "latitude": 49.2827, "longitude": -123.1207},
+
           /* USA */
           /* East Coast */
           {"title": "Washington, D.C., USA", "latitude": 38.8921, "longitude": -77.0241 },
@@ -124,7 +126,6 @@
           {"title": "San Francisco, USA", "latitude": 37.775, "longitude": -122.419 },
           {"title": "Los Angeles, USA", "latitude": 34.052, "longitude": -118.244 },
           {"title": "Las Vegas, USA", "latitude": 36.170, "longitude": -115.140 },
-          {"title": "Seattle, USA", "latitude": 47.608, "longitude": -122.332 },
           {"title": "Seattle, USA", "latitude": 47.608, "longitude": -122.332 },
     
           /* South America */
