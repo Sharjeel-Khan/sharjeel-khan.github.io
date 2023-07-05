@@ -121,7 +121,7 @@
           {"title": "Miami, FL, USA", "latitude": 25.761681, "longitude": -80.191788},
           {"title": "Orlando, FL, USA", "latitude": 28.538336, "longitude": -81.379234},
           {"title": "Richmond, VA, USA", "latitude": 37.540726, "longitude": -77.436050},
-          {"title": "Stamford, CA, USA", "latitude": 41.053429, "longitude": -73.538734},
+          {"title": "Stamford, CT, USA", "latitude": 41.053429, "longitude": -73.538734},
           /* West Coast */
           {"title": "San Francisco, USA", "latitude": 37.775, "longitude": -122.419 },
           {"title": "Los Angeles, USA", "latitude": 34.052, "longitude": -118.244 },
@@ -148,7 +148,7 @@
           {"title": "Cappadocia, Turkey", "latitude": 38.640388, "longitude": 34.846306 },
 
           /* Africa */
-          {"title": "Addis Ababa", "latitude": 9.0084, "longitude": 38.7575},
+          {"title": "Addis Ababa, Ethiopia", "latitude": 9.0084, "longitude": 38.7575},
     
           /* Asia */
           {"title": "Tokyo, Japan", "latitude": 35.6785, "longitude": 139.6823 },
