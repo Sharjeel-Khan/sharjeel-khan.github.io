@@ -76,13 +76,45 @@ html(lang='en')
                                 a.social-icon(href='https://dblp.uni-trier.de/pers/hd/k/Khan:Sharjeel')
                                     i.ai.ai-dblp
                             
+                            br
+                            br
+                            table
+                                tr 
+                                    td
+                                        h3.mb-0 
+                                            | Recent Updates
+
+                                        ul
+                                            li [Oct 2023] 
+                                                b#talk [Talk] 
+                                                | I gave a lightning talk about validating orderfiles at the LLVM Developers Meeting.  
+                                            li [Sep 2023] 
+                                                b#paper [Paper] 
+                                                | Our paper, Beacons: A End-to-End Compiler Framework for Predicting and Utilizing Dynamic Loop Characteristics, got accepted to ACM Object-Oriented Programming, Systems, Languages and Applications (OOPSLA'23).
+                                            li [May 2023] 
+                                                b#career [Career] 
+                                                | I began my internship in the Android LLVM team at Google. 
+                                            li [Oct 2023] 
+                                                b#paper [Paper] 
+                                                | Our paper, Decker: Attack Surface Reduction via On-demand Code Mapping, got accepted to ACM International Conference on Architectural Support for Programming Languages and Operating (ASPLOS' 20'23).
+                                            li [Jan 2023] 
+                                                b#paper [Paper] 
+                                                | Our paper, A High Performance Computing Architecture for Real-Time Digital Emulation of RF Interactions, got accepted to IEEE Radar Conference (RadarConf'23).
+                                            li [June 2022] 
+                                                b#paper [Paper] 
+                                                | Our paper, Com-CAS: Effective Cache Apportioning under Compiler Guidance, got accepted to International Conference on Parallel Architectures and Compilation Techniques (PACT'23).
+                                            li [May 2022] 
+                                                b#career [Career] 
+                                                | I began my internship in the Redex team at Meta.
+                                            li [Apr 2022] 
+                                                b#paper [Paper] 
+                                                | Our paper, VICO : Demand-driven Verification for Improving Compiler Optimizations, got accepted to ACM International Conference on Supercomputing (ICS'22).
+                                            li [Apr 2022] 
+                                                b#career [Career] 
+                                                | I was chosen as President of the School of Computer Science Graduate Student Association.
 
                         .flex-shrink-0
                             img.img-fluid.img-profile.rounded-circle#profile(src='assets/img/profile.jpg')
-                    
-
-                    
-
             hr.m-0
 
             // About
@@ -96,7 +128,11 @@ html(lang='en')
                                 | Hey, my name is Sharjeel Khan. I am a fifth-year Computer Science Ph.D. student at Georgia Institute of Technology working with <a href="https://sites.google.com/site/profsantoshpande/">Dr. Santosh Pande</a>.
                                 | My research interests lie in the intersection of programming languages, security, and compilers research.
                                 | I am working on using program analysis to improve software verification techniques or solve security problems.
-                                | Currently, I am working on using compiler analysis to improve software verification of properties in codebases. In addition, I am working on a hardware pointer authentication scheme that subverts control-flow bending attacks.
+                                | Currently, I am working on three projects:
+                            ul 
+                                li I use compiler analysis and machine learning to improve software verification of safety properties in codebases. 
+                                li I use static analysis to subvert ROP/JOP chains within any program. 
+                                li I use hardware pointer authentication to subvert control-flow bending attacks.
                             
                             p
                                 | I did my Bachelors in Computer Science from Carnegie Mellon University.
@@ -104,11 +140,11 @@ html(lang='en')
                                 //- | I am originally from Hyderabad, India, but I lived my entire childhood in the Middle East (Dubai then Doha).
 
                             p
-                                |   My hobbies range from playing video games (currently ) or board games, watching TV shows (currently Welcome to Wrexham), reading manga (One Piece), or trying out new restaurants.
+                                |   My hobbies range from playing video games (currently Cyberpunk 2077) or board games, watching TV shows (currently Welcome to Wrexham), reading manga (One Piece), or trying out new restaurants.
                                 |   In addition, I love to travel to new countries and meet new people.
                                 |   I have been to around 20+ countries and 40+ cities.
-                                |   My most recent trip was to San Francisco, California to attend LLVM Developers Meeting to give a lightning talk about orderfiles.
-                            //  |   I blog about my travels and my interests on <a href="https://medium.com/@sharjeelkhan_41359">Medium</a>.
+                                |   My most recent trip was to San Francisco, California to attend LLVM Developers Meeting.
+                                //-  |   I blog about my travels and my interests on <a href="https://medium.com/@sharjeelkhan_41359">Medium</a>.
 
                             .col-lg-12.text-center.button  
                                 a.btn.btn-lg.btn-outline(href='assets/files/CV.pdf')
@@ -135,12 +171,12 @@ html(lang='en')
                                     | Beacons: A End-to-End Compiler Framework for Predicting and Utilizing Dynamic Loop Characteristics
                                 .subheading.text-light
                                     | Girish Mururu, <strong>Sharjeel Khan</strong>, Bodhisatwa Chatterjee, Chao Chen, Chris Porter, Ada Gavrilovska, and Santosh Pande.
-                                .row
-                                    .col-sm-2.button.pub
+                                .d-flex.flex-row.mb3
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://dl.acm.org/doi/10.1145/3622803')
                                             i.fa.fa-file-pdf
                                             | Paper
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://doi.org/10.5281/zenodo.8333860')
                                             i.fa.fa-code
                                             | Code
@@ -156,8 +192,8 @@ html(lang='en')
                                     | A High Performance Computing Architecture for Real-Time Digital Emulation of RF Interactions
                                 .subheading.text-light
                                     | Mandovi Mukherjee, Nael Mizanur Rahman, Coleman DeLude, Joseph Driscoll, Uday Kamal, Jongseok Woo, Jamin Seo, Sudarshan Sharma, Xiangyu Mao, Payman Behnam, <strong>Sharjeel Khan</strong>, Daehyun Kim, Jianming Tong, Prachi Sinha, Santosh Pande, Tushar Krishna, Justin Romberg, Madhavan Swaminathan, and Saibal Mukhopadhyay.
-                                .row
-                                    .col-sm-2.button.pub
+                                .d-flex.flex-row.mb3
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://ieeexplore.ieee.org/document/10149577')
                                             i.fa.fa-file-pdf
                                             | Paper
@@ -172,24 +208,24 @@ html(lang='en')
                                     | Decker: Attack Surface Reduction via On-demand Code Mapping
                                 .subheading.text-light
                                     | Chris Porter, <strong>Sharjeel Khan</strong>, and Santosh Pande.
-                                .row
-                                    .col-sm-2.button.pub
+                                .d-flex.flex-row.mb3
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://doi.acm.org?doi=3575693.3575734')
                                             i.fa.fa-file-pdf
                                             | Paper
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://doi.org/10.5281/zenodo.7222072')
                                             i.fa.fa-code
                                             | Code
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='assets/files/slides/ASPLOS2023.pdf')
                                             i.fa.fa-code
                                             | Long Slides
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='assets/files/slides/ASPLOS2023S.pdf')
                                             i.fa.fa-code
                                             | Short Slides
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://www.youtube.com/watch?v=0wlYse9UDDU&feature=youtu.be')
                                             i.fa.fa-code
                                             | Short Talk
@@ -204,12 +240,12 @@ html(lang='en')
                                     | Com-CAS: Effective Cache Apportioning under Compiler Guidance
                                 .subheading.text-light
                                     | Bodhisatwa Chatterjee, <strong>Sharjeel Khan</strong>, and Santosh Pande.
-                                .row
-                                    .col-sm-2.button.pub
+                                .d-flex.flex-row.mb3
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://doi.acm.org?doi=3559009.3569645')
                                             i.fa.fa-file-pdf
                                             | Paper
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='assets/files/slides/PACT22.pdf')
                                             i.fa.fa-file-powerpoint
                                             | Slides
@@ -224,16 +260,16 @@ html(lang='en')
                                     | VICO : Demand-driven Verification for Improving Compiler Optimizations
                                 .subheading.text-light
                                     | <strong>Sharjeel Khan</strong>, Bodhisatwa Chatterjee, and Santosh Pande.
-                                .row
-                                    .col-sm-2.button.pub
+                                .d-flex.flex-row.mb3
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://dl.acm.org/doi/10.1145/3524059.3532393')
                                             i.fa.fa-file-pdf
                                             | Paper
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='assets/files/slides/ICS22.pdf')
                                             i.fa.fa-file-powerpoint
                                             | Large Slides
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='assets/files/slides/ICS2022.pdf')
                                             i.fa.fa-file-powerpoint
                                             | Short Slides
@@ -250,18 +286,16 @@ html(lang='en')
                                     | Formalization of Automated Trading Systems in a Concurrent Linear Framework
                                 .subheading.text-light
                                     | Iliano Cervesato, <strong>Sharjeel Khan</strong>, Giselle Reis, and Dragisa Zunic.
-                                .row
-                                    .flex-column.flex-md-row.justify-content-between.mb-3.button.pub
+                                .d-flex.flex-row.mb3
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://arxiv.org/abs/1904.06844v1')
                                             i.fa.fa-file-pdf
                                             | Paper
-
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='assets/files/slides/linearity18.pdf')
                                             i.fa.fa-file-powerpoint
                                             | Slides
-
-                                    .col-sm-2.button.pub
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://github.com/Sharjeel-Khan/financialCLF')
                                             i.fa.fa-code
                                             | Code
@@ -278,8 +312,8 @@ html(lang='en')
                                     | Practical compilation of fexprs using partial evaluation
                                 .subheading.text-light
                                     | Nathan Braswell, <strong>Sharjeel Khan</strong>, and Santosh Pande.
-                                .row
-                                    .col-sm-2.button.pub
+                                .d-flex.flex-row.mb3
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://arxiv.org/abs/2303.12254')
                                             i.fa.fa-file-pdf
                                             | Paper
@@ -294,8 +328,8 @@ html(lang='en')
                                     | Biscuit: A Compiler Assisted Scheduler for Detecting and Mitigating Cache-Based Side Channel Attacks
                                 .subheading.text-light
                                     | <strong>Sharjeel Khan</strong>, Girish Mururu, and Santosh Pande.
-                                .row
-                                    .col-sm-2.button.pub
+                                .d-flex.flex-row.mb3
+                                    .p-2.button.pub
                                         a.btn.btn-lg.btn-outline(href='https://arxiv.org/abs/2003.03850')
                                             i.fa.fa-file-pdf
                                             | Paper
@@ -316,57 +350,6 @@ html(lang='en')
 
 
             hr.m-0
-
-            //- // Skills
-            //- section#skills.resume-section
-            //-     .resume-section-content
-            //-         h2.mb-5 Skills
-            //-         .subheading.mb-3 Programming Languages & Tools
-            //-         ul.list-inline.dev-icons
-            //-             li.list-inline-item
-            //-                 i.fab.fa-html5
-            //-             li.list-inline-item
-            //-                 i.fab.fa-css3-alt
-            //-             li.list-inline-item
-            //-                 i.fab.fa-js-square
-            //-             li.list-inline-item
-            //-                 i.fab.fa-angular
-            //-             li.list-inline-item
-            //-                 i.fab.fa-react
-            //-             li.list-inline-item
-            //-                 i.fab.fa-node-js
-            //-             li.list-inline-item
-            //-                 i.fab.fa-sass
-            //-             li.list-inline-item
-            //-                 i.fab.fa-less
-            //-             li.list-inline-item
-            //-                 i.fab.fa-wordpress
-            //-             li.list-inline-item
-            //-                 i.fab.fa-gulp
-            //-             li.list-inline-item
-            //-                 i.fab.fa-grunt
-            //-             li.list-inline-item
-            //-                 i.fab.fa-npm
-            //-         .subheading.mb-3 Workflow
-            //-         ul.fa-ul.mb-0
-            //-             li
-            //-                 span.fa-li
-            //-                     i.fas.fa-check
-            //-                 | Mobile-First, Responsive Design
-            //-             li
-            //-                 span.fa-li
-            //-                     i.fas.fa-check
-            //-                 | Cross Browser Testing & Debugging
-            //-             li
-            //-                 span.fa-li
-            //-                     i.fas.fa-check
-            //-                 | Cross Functional Teams
-            //-             li
-            //-                 span.fa-li
-            //-                     i.fas.fa-check
-            //-                 | Agile Development & Scrum
-
-            //- hr.m-0
 
         // Bootstrap core JS
         script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js')
