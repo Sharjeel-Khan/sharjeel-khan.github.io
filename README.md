@@ -1,4 +1,4 @@
-You can check the Portfolio at [http://www.smkhan.me](https://startbootstrap.com/theme/resume/)
+You can check the Portfolio at [http://www.smkhan.me](http://www.smkhan.me)
 
 ## Copyright and License
 
