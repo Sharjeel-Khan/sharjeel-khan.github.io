@@ -119,10 +119,11 @@ window.addEventListener('DOMContentLoaded', event => {
           {"title": "Richmond, VA, USA", "latitude": 37.540726, "longitude": -77.436050},
           {"title": "Stamford, CT, USA", "latitude": 41.053429, "longitude": -73.538734},
           /* West Coast */
-          {"title": "San Francisco, USA", "latitude": 37.775, "longitude": -122.419 },
-          {"title": "Los Angeles, USA", "latitude": 34.052, "longitude": -118.244 },
-          {"title": "Las Vegas, USA", "latitude": 36.170, "longitude": -115.140 },
-          {"title": "Seattle, USA", "latitude": 47.608, "longitude": -122.332 },
+          {"title": "San Francisco, CA, USA", "latitude": 37.775, "longitude": -122.419 },
+          {"title": "San Diego, CA, USA", "latitude": 32.716, "longitude": -117.16 },
+          {"title": "Los Angeles, CA, USA", "latitude": 34.052, "longitude": -118.244 },
+          {"title": "Las Vegas, NV, USA", "latitude": 36.170, "longitude": -115.140 },
+          {"title": "Seattle, WA, USA", "latitude": 47.608, "longitude": -122.332 },
     
           /* South America */
     
