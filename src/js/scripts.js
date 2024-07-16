@@ -119,6 +119,7 @@ window.addEventListener('DOMContentLoaded', event => {
           {"title": "Los Angeles, CA, USA", "latitude": 34.052, "longitude": -118.244 },
           {"title": "Las Vegas, NV, USA", "latitude": 36.170, "longitude": -115.140 },
           {"title": "Seattle, WA, USA", "latitude": 47.608, "longitude": -122.332 },
+          {"title": "Portland, Oregon, USA", "latitude": 45.515, "longitude": -122.678 },
     
           /* South America */
     
@@ -134,7 +135,6 @@ window.addEventListener('DOMContentLoaded', event => {
           {"title": "Stockholm, Sweden", "latitude": 59.3328, "longitude": 18.0645 },
           {"title": "Kiev, Ukraine", "latitude": 50.4422, "longitude": 30.5367 },
           {"title": "Lviv, Ukraine", "latitude": 49.839684, "longitude": 24.029716 },
-    
           {"title": "Istanbul, Turkey", "latitude": 41.0082, "longitude": 28.9784 },
           {"title": "Ephseus, Turkey", "latitude": 37.9484, "longitude": 27.3681 },
           {"title": "Cappadocia, Turkey", "latitude": 38.640388, "longitude": 34.846306 },
@@ -149,14 +149,12 @@ window.addEventListener('DOMContentLoaded', event => {
           {"title": "Hiroshima, Japan", "latitude": 34.385204, "longitude": 132.455292 },
           {"title": "Nara, Japan", "latitude": 34.685085, "longitude": 135.804993 },
           {"title": "Hong Kong", "latitude": 22.396427, "longitude": 114.109497 },
-    
+          {"title": "Sydney, Australia", "latitude": -33.868820, "longitude": 151.209290 },
           {"title": "Singapore", "latitude": 1.2894, "longitude": 103.85 },
-          {"title": "Bangkok, Thailand", "latitude": 13.7573, "longitude": 100.502 },
-          {"title": "Phuket, Thailand", "latitude": 7.951933, "longitude": 98.338089 },
           {"title": "Kuala Lampur, Malayasia", "latitude": 3.154430, "longitude": 101.715103 },
           {"title": "Bali, Indonesia", "latitude": -8.340539, "longitude": 115.091949 },
-          {"title": "Sydney, Australia", "latitude": -33.868820, "longitude": 151.209290 },
-    
+          {"title": "Bangkok, Thailand", "latitude": 13.7573, "longitude": 100.502 },
+          {"title": "Phuket, Thailand", "latitude": 7.951933, "longitude": 98.338089 },
           {"title": "Hyderabad, India", "latitude": 17.3850, "longitude": 78.4867 },
           {"title": "Ahmedabad, India", "latitude": 23.0225, "longitude": 72.5714 },
     
@@ -169,9 +167,6 @@ window.addEventListener('DOMContentLoaded', event => {
           {"title": "Kuwait City, Kuwait", "latitude": 29.3721, "longitude": 47.9824 },
           {"title": "Riyadh, Saudi Arabia", "latitude": 24.6748, "longitude": 46.6977 },
           {"title": "Jeddah, Saudi Arabia", "latitude": 21.485811, "longitude": 39.192505 },
-    
-    
-    
     
         ];
       });
