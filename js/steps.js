@@ -39,7 +39,6 @@ const Encounter4 = {
         const buttons = $(`.se-btn-group button.btn-light`);
         if (buttons.length < 13) return null;
 
-        var start = null;
         var prev = null;
 
         const state = {
@@ -47,21 +46,24 @@ const Encounter4 = {
                 inside: null,
                 insideW1: null,
                 insideW2: null,
-                outside: null
+                outside: null,
+                shadows: null
             },
 
             middle: {
                 inside: null,
                 insideW1: null,
                 insideW2: null,
-                outside: null
+                outside: null,
+                shadows: null
             },
 
             right: {
                 inside: null,
                 insideW1: null,
                 insideW2: null,
-                outside: null
+                outside: null,
+                shadows: null
             }
         };
 
@@ -71,7 +73,7 @@ const Encounter4 = {
             const position = button.closest('.card-body').data('position');
 
             if (position == "top") {
-                start = button.data('components');
+                prev = button.data('components');
             } else {
                 state[position][area] = button.data('components');
             }
@@ -79,6 +81,8 @@ const Encounter4 = {
 
         // Define methods for each position in state
         for (const position in state) {
+            state[position].shadows = state[position].inside;
+
             state[position].toAdd = function () {
                 let required = this.insideW1 + this.insideW2;
 
@@ -88,6 +92,16 @@ const Encounter4 = {
 
                 return required;
             };
+
+            state[position].toAddInner = function () {
+                let leftover = 'CST';
+
+                for (let component of this.shadows) {
+                    leftover = leftover.replace(component, '');
+                }
+
+                return leftover
+            }
 
             state[position].toRemove = function (symbol) {
                 if (this.outside.includes(this.inside)) {
@@ -107,21 +121,12 @@ const Encounter4 = {
                 this.outside = this.outside.replace(toRemove, toAdd);
             };
 
-            state[position].isWallDouble = function () {
-                return this.insideW1 === this.insideW2;
-            };
-
-            state[position].isWallDoubleStatue = function () {
-                return this.insideW1 === this.insideW2 && this.insideW1 === this.inside;
-            };
-
-
-            state[position].isWallDoubleNotStatue = function () {
-                return this.insideW1 === this.insideW2 && this.insideW1 != this.inside;
-            };
-
             state[position].hasSameAsStatue = function () {
                 return this.inside === this.insideW1 || this.inside === this.insideW2;
+            };
+
+            state[position].hasWallDouble = function () {
+                return this.insideW1 === this.insideW2;
             };
 
             state[position].whichWallSame = function () {
@@ -132,16 +137,18 @@ const Encounter4 = {
                 }
             };
 
-            state[position].whichWall = function (symbol) {
-                if (symbol === this.insideW1) {
-                    return "insideW1";
-                } else {
-                    return "insideW2";
-                }
-            };
-
             state[position].outsideSolved = function () {
                 return (this.insideW1 + this.insideW2 === this.outside) || (this.insideW2 + this.insideW1 === this.outside);
+            };
+
+            state[position].innerSolved = function () {
+                let leftover = 'CST';
+
+                for (let component of this.shadows) {
+                    leftover = leftover.replace(component, '');
+                }
+
+                return (this.insideW1 != this.inside) && (this.insideW2 != this.inside) && (leftover === "");
             };
         }
 
@@ -173,17 +180,70 @@ const Encounter4 = {
         const insideW2M = state["middle"].insideW2;
         const insideW2R = state["right"].insideW2;
 
-        if (state["left"].isWallDouble() && state["right"].isWallDouble() && state["middle"].isWallDouble()) {
-            console.log("All Double");
-            leftT.middle = state["left"].insideW1;
-            leftT.right = state["left"].insideW2;
-            middleT.left = state["middle"].insideW1;
-            middleT.right = state["middle"].insideW2;
-            rightT.left = state["right"].insideW1;
-            rightT.middle = state["right"].insideW2;
 
-            if (start == "left") {
+        if (insideW1L === statueM && insideW2L != statueM) {
+            leftT.middle = insideW2L;
+            leftT.right = insideW1L;
+        } else {
+            leftT.middle = insideW1L;
+            leftT.right = insideW2L;
+        }
 
+        if (insideW1M === statueL && insideW2M != statueL) {
+            middleT.left = insideW2M;
+            middleT.right = insideW1M;
+        } else {
+            middleT.left = insideW1M;
+            middleT.right = insideW2M;
+        }
+
+        if (insideW1R === statueM && insideW2R != statueM) {
+            rightT.middle = insideW2R;
+            rightT.left = insideW1R;
+        } else {
+            rightT.middle = insideW1R;
+            rightT.left = insideW2R;
+        }
+
+        if (prev === "left") {
+            stepsI.push({
+                type: 'instruction',
+                text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.right)} 
+                    ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+            });
+
+            stepsI.push({
+                type: 'instruction',
+                text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.middle)} 
+                    ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+            });
+
+            stepsI.push({
+                type: 'instruction',
+                text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
+                    ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+            });
+
+            stepsI.push({
+                type: 'instruction',
+                text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.right)} 
+                    ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+            });
+
+            stepsI.push({
+                type: 'instruction',
+                text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.middle)} 
+                    ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+            });
+
+            stepsI.push({
+                type: 'instruction',
+                text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.left)} 
+                    ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+            });
+
+            prev = "left";
+        } else {
             stepsI.push({
                 type: 'instruction',
                 text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
@@ -221,623 +281,653 @@ const Encounter4 = {
             });
 
             prev = "middle";
-            } else if (start == "middle") {
+        }
 
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
+        state.left.insideW1 = middleT.left;
+        state.left.insideW2 = rightT.left;
+        state.left.shadows += middleT.left + rightT.left;
+        state.middle.insideW1 = leftT.middle;
+        state.middle.insideW2 = rightT.middle;
+        state.middle.shadows += leftT.middle + rightT.middle;
+        state.right.insideW1 = middleT.right;
+        state.right.insideW2 = leftT.right;
+        state.right.shadows += middleT.right + leftT.right;
 
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                prev = "right";
-            } else {
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                prev = "left";
-            }
-
-            state.left.insideW1 = middleT.left;
-            state.left.insideW2 = rightT.left;
-            state.middle.insideW1 = leftT.middle;
-            state.middle.insideW2 = rightT.middle;
-            state.right.insideW1 = middleT.right;
-            state.right.insideW2 = leftT.right;
-
-            var leftTT = {
-                middle: null
-            };
+        if (state.left.hasSameAsStatue() && state.middle.hasSameAsStatue() && state.right.hasSameAsStatue()) {
+            var leftWallRemove = state.left.whichWallSame();
+            var middleWallRemove = state.middle.whichWallSame();
+            var rightWallRemove = state.right.whichWallSame();
+            var oldLeft = state.left[leftWallRemove];
+            var oldMiddle = state.middle[middleWallRemove];
+            var oldRight = state.right[rightWallRemove];
+            var newLeft = null;
+            var newMiddle = null;
+            var newRight = null;
             
-            var middleTT = {
-                right: null
-            };
-    
-            var rightTT = {
-                left: null
-            };
-
-            leftTT.middle = state.left.whichWallSame();
-            middleTT.right = state.middle.whichWallSame();
-            rightTT.left = state.right.whichWallSame();
-
-            var tempL = state.right[state.right.whichWallSame()];
-            var tempM = state.left[state.left.whichWallSame()];
-            var tempR = state.middle[state.middle.whichWallSame()];
-
-            if (start == "left") {
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(tempL)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(tempR)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(tempM)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                prev = "middle";
-            } else if (start == "middle") {
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(tempM)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(tempL)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(tempR)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                prev = "right";
-            } else {
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(tempR)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(tempM)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(tempL)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                prev = "left";
-            }
-
-            state.left[leftTT.middle] = tempL;
-            state.middle[middleTT.right] = tempM;
-            state.right[rightTT.left] = tempR;
-
-        } 
-        else if (!state["left"].isWallDouble() && !state["right"].isWallDouble() && !state["middle"].isWallDouble()) {
-            console.log("All Mixed");
-
-            if (statueM === insideW1L) {
-                leftT.middle = insideW2L;
-                leftT.right = insideW1L;
-            } else if (statueR === insideW2L) { 
-                leftT.middle = insideW2L;
-                leftT.right = insideW1L;
-            } else {
-                leftT.middle = insideW1L;
-                leftT.right = insideW2L;
-            }
-
-            if (statueM === insideW1R) {
-                rightT.middle = insideW2R;
-                rightT.left = insideW1R;
-            } else if (statueL === insideW2R) { 
-                rightT.middle = insideW2R;
-                rightT.left = insideW1R;
-            } else {
-                rightT.middle = insideW1R;
-                rightT.left = insideW2R;
-            }
-
-            if (statueL === insideW1M) {
-                middleT.left = insideW2M;
-                middleT.right = insideW1M;
-            } else if (statueR == insideW2M) {
-                middleT.left = insideW2M;
-                middleT.right = insideW1M;
-            } else {
-                middleT.left = insideW1M;
-                middleT.right = insideW2M;
-            }
-
-            if (start == "left") {
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                prev = "middle";
-            } else if (start == "middle") {
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                prev = "right";
-            } else {
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                prev = "left";
-            }
-
-            state.left.insideW1 = middleT.left;
-            state.left.insideW2 = rightT.left;
-            state.middle.insideW1 = leftT.middle;
-            state.middle.insideW2 = rightT.middle;
-            state.right.insideW1 = middleT.right;
-            state.right.insideW2 = leftT.right;
-
-        } else {
-            console.log("One Double and 2 mixed");
-
-            if (statueM === insideW1L) {
-                leftT.middle = insideW2L;
-                leftT.right = insideW1L;
-            } else if (statueR === insideW2L) { 
-                leftT.middle = insideW2L;
-                leftT.right = insideW1L;
-            } else {
-                leftT.middle = insideW1L;
-                leftT.right = insideW2L;
-            }
-
-            if (statueM === insideW1R) {
-                rightT.middle = insideW2R;
-                rightT.left = insideW1R;
-            } else if (statueL === insideW2R) { 
-                rightT.middle = insideW2R;
-                rightT.left = insideW1R;
-            } else {
-                rightT.middle = insideW1R;
-                rightT.left = insideW2R;
-            }
-
-            if (statueL === insideW1M) {
-                middleT.left = insideW2M;
-                middleT.right = insideW1M;
-            } else if (statueR == insideW2M) {
-                middleT.left = insideW2M;
-                middleT.right = insideW1M;
-            } else {
-                middleT.left = insideW1M;
-                middleT.right = insideW2M;
-            }
-
-            if (start == "left") {
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-            } else if (start == "middle") {
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-            } else {
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(leftT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(middleT.right)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.middle)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                });
-
-                stepsI.push({
-                    type: 'instruction',
-                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(rightT.left)} 
-                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                });
-            }
-
-            state.left.insideW1 = middleT.left;
-            state.left.insideW2 = rightT.left;
-            state.middle.insideW1 = leftT.middle;
-            state.middle.insideW2 = rightT.middle;
-            state.right.insideW1 = middleT.right;
-            state.right.insideW2 = leftT.right;
-
-            if (state.left.isWallDouble() || state.middle.isWallDouble() || state.right.isWallDouble()) {
-
-                var leftTT = {
-                    middle: null
-                };
-                
-                var middleTT = {
-                    right: null
-                };
-        
-                var rightTT = {
-                    left: null
-                };
-
-                
-                var double = null;
-                var sameS = null;
-                var whichWall = null;
-
-                if (state.left.isWallDouble()) {
-                    double = "left";
-                    leftTT.middle = "insideW1";
-                } else if (state.middle.isWallDouble()) {
-                    double = "middle";
-                    middleTT.right = "insideW1";
-                } else {
-                    double = "right";
-                    rightTT.left = "insideW1";
-                }
-
-                if (state.left.hasSameAsStatue()) {
-                    sameS = "left";
-                    leftTT.middle = state.left.whichWallSame();
-                    if (double == "middle") {
-                        rightTT.left = state.right.whichWall(state.left[leftTT.middle]);
-                    } else {
-                        middleTT.right = state.middle.whichWall(state.left[leftTT.middle]);
-                    }
-                } else if (state.middle.hasSameAsStatue()) {
-                    sameS = "middle";
-                    middleTT.right = state.middle.whichWallSame();
-                    if (double == "left") {
-                        rightTT.left = state.right.whichWall(state.middle[middleTT.right]);
-                    } else {
-                        leftTT.middle = state.left.whichWall(state.middle[middleTT.right]);
-                    }
-                } else {
-                    sameS = "right";
-                    rightTT.left = state.right.whichWallSame();
-                    if (double == "middle") {
-                        leftTT.middle = state.left.whichWall(state.right[rightTT.left]);
-                    } else {
-                        middleTT.right = state.middle.whichWall(state.right[rightTT.left]);
-                    }
-                }
-
-                var tempL = state.right[rightTT.left];
-                var tempM = state.left[leftTT.middle];
-                var tempR = state.middle[middleTT.right];
-
-                if (start == "left") {
+            if(state.left.toAddInner() === oldRight) {
+                if (prev === "left") {
                     stepsI.push({
                         type: 'instruction',
-                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(tempL)} 
-                            ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
-                    });
-
-                    stepsI.push({
-                        type: 'instruction',
-                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(tempR)} 
-                            ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
-                    });
-
-                    stepsI.push({
-                        type: 'instruction',
-                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(tempM)} 
-                            ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
-                    });
-
-                    prev = "middle";
-                } else if (start == "middle") {
-                    stepsI.push({
-                        type: 'instruction',
-                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(tempM)} 
+                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
                             ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
                     });
 
                     stepsI.push({
                         type: 'instruction',
-                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(tempL)} 
+                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                    });
+
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                    });
+                } else {
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
                             ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
                     });
 
                     stepsI.push({
                         type: 'instruction',
-                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(tempR)} 
-                            ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
                     });
 
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                    });
                     prev = "right";
-                } else {
+                }
+
+                newLeft = oldRight;
+                newMiddle = oldLeft;
+                newRight = oldMiddle;
+            } else {
+                if (prev === "left") {
                     stepsI.push({
                         type: 'instruction',
-                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(tempR)} 
+                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
                             ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
                     });
-
+        
                     stepsI.push({
                         type: 'instruction',
-                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(tempM)} 
+                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
                             ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
                     });
 
                     stepsI.push({
                         type: 'instruction',
-                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(tempL)} 
+                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
                             ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
                     });
 
                     prev = "left";
+                } else {
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                    });
+        
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                    });
+        
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                    });
+                    prev = "middle";
                 }
 
-                state.left[leftTT.middle] = tempL;
-                state.middle[middleTT.right] = tempM;
-                state.right[rightTT.left] = tempR;
+                newLeft = oldMiddle;
+                newMiddle = oldRight;
+                newRight = oldLeft;
             }
-        }
+
+            state.left[leftWallRemove] = newLeft;
+            state.middle[middleWallRemove] = newMiddle;
+            state.right[rightWallRemove] = newRight;
+            state.left.shadows += newLeft;
+            state.middle.shadows += newMiddle;
+            state.right.shadows += newRight;
+        } else if (state.left.hasWallDouble() && state.middle.hasWallDouble() && state.right.hasWallDouble()) {
+            var leftWallRemove = "insideW1";
+            var middleWallRemove = "insideW1";
+            var rightWallRemove = "insideW1";
+            var oldLeft = state.left[leftWallRemove];
+            var oldMiddle = state.middle[middleWallRemove];
+            var oldRight = state.right[rightWallRemove];
+            var newLeft = null;
+            var newMiddle = null;
+            var newRight = null;
+            
+            if(state.left.toAddInner() === oldRight) {
+                if (prev === "left") {
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                    });
+
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                    });
+
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                    });
+                } else {
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                    });
+
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                    });
+
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                    });
+                    prev = "right";
+                }
+
+                newLeft = oldRight;
+                newMiddle = oldLeft;
+                newRight = oldMiddle;
+            } else {
+                if (prev === "left") {
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                    });
+        
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                    });
+
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                    });
+
+                    prev = "left";
+                } else {
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                    });
+        
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                    });
+        
+                    stepsI.push({
+                        type: 'instruction',
+                        text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                            ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                    });
+                    prev = "middle";
+                }
+
+                newLeft = oldMiddle;
+                newMiddle = oldRight;
+                newRight = oldLeft;
+            }
+
+            state.left[leftWallRemove] = newLeft;
+            state.middle[middleWallRemove] = newMiddle;
+            state.right[rightWallRemove] = newRight;
+            state.left.shadows += newLeft;
+            state.middle.shadows += newMiddle;
+            state.right.shadows += newRight;
+        } else if (state.left.hasSameAsStatue() && state.middle.hasSameAsStatue()) {
+            var leftWallRemove = state.left.whichWallSame();
+            var middleWallRemove = state.middle.whichWallSame();
+            var oldLeft = state.left[leftWallRemove];
+            var oldMiddle = state.middle[middleWallRemove];
+            var newLeft = null;
+            var newMiddle = null;
+
+
+            if (prev === "left") {
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+            } else {
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+                
+                prev = "middle";
+            }
+
+            newLeft = oldMiddle;
+            newMiddle = oldLeft;
+            state.left[leftWallRemove] = newLeft;
+            state.middle[middleWallRemove] = newMiddle;
+            state.left.shadows += newLeft;
+            state.middle.shadows += newMiddle;
+        } else if (state.left.hasSameAsStatue() && state.right.hasSameAsStatue()) {
+            var leftWallRemove = state.left.whichWallSame();
+            var rightWallRemove = state.right.whichWallSame();
+            var oldLeft = state.left[leftWallRemove];
+            var oldRight = state.right[rightWallRemove];
+            var newLeft = null;
+            var newRight = null;
+
+
+            if (prev === "left") {
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+            } else {
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+                prev = "right";
+            }
+
+            newRight = oldLeft;
+            newLeft = oldRight;
+            state.left[leftWallRemove] = newLeft;
+            state.right[rightWallRemove] = newRight;
+            state.left.shadows += newLeft;
+            state.right.shadows += newRight;
+            
+        } else if (state.right.hasSameAsStatue() && state.middle.hasSameAsStatue()) {
+            var middleWallRemove = state.middle.whichWallSame();
+            var rightWallRemove = state.right.whichWallSame();
+            var oldMiddle = state.middle[middleWallRemove];
+            var oldRight = state.right[rightWallRemove];
+            var newMiddle = null;
+            var newRight = null;
+
+
+            if (prev === "right") {
+        
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+            } else {
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+
+                prev = "middle";
+            }
+
+            newRight = oldMiddle;
+            newMiddle = oldRight;
+            state.middle[middleWallRemove] = newMiddle;
+            state.right[rightWallRemove] = newRight;
+            state.middle.shadows += newMiddle;
+            state.right.shadows += newRight;
+        } else if (state.left.hasSameAsStatue() && state.middle.hasWallDouble()) {
+            var leftWallRemove = state.left.whichWallSame();
+            var middleWallRemove = "insideW1";
+            var oldLeft = state.left[leftWallRemove];
+            var oldMiddle = state.middle[middleWallRemove];
+            var newLeft = null;
+            var newMiddle = null;
+
+
+            if (prev === "left") {
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+            } else {
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+                
+                prev = "middle";
+            }
+
+            newLeft = oldMiddle;
+            newMiddle = oldLeft;
+            state.left[leftWallRemove] = newLeft;
+            state.middle[middleWallRemove] = newMiddle;
+            state.left.shadows += newLeft;
+            state.middle.shadows += newMiddle;
+        } else if (state.left.hasSameAsStatue() && state.right.hasWallDouble()) {
+            var leftWallRemove = state.left.whichWallSame();
+            var rightWallRemove = "insideW1";
+            var oldLeft = state.left[leftWallRemove];
+            var oldRight = state.right[rightWallRemove];
+            var newLeft = null;
+            var newRight = null;
+
+
+            if (prev === "left") {
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+            } else {
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+                prev = "right";
+            }
+
+            newRight = oldLeft;
+            newLeft = oldRight;
+            state.left[leftWallRemove] = newLeft;
+            state.right[rightWallRemove] = newRight;
+            state.left.shadows += newLeft;
+            state.right.shadows += newRight;
+            
+        } else if (state.left.hasWallDouble() && state.middle.hasSameAsStatue()) {
+            var leftWallRemove = "insideW1";
+            var middleWallRemove = state.middle.whichWallSame();
+            var oldLeft = state.left[leftWallRemove];
+            var oldMiddle = state.middle[middleWallRemove];
+            var newLeft = null;
+            var newMiddle = null;
+
+
+            if (prev === "left") {
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+            } else {
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+                
+                prev = "middle";
+            }
+
+            newLeft = oldMiddle;
+            newMiddle = oldLeft;
+            state.left[leftWallRemove] = newLeft;
+            state.middle[middleWallRemove] = newMiddle;
+            state.left.shadows += newLeft;
+            state.middle.shadows += newMiddle;
+        } else if (state.left.hasWallDouble() && state.right.hasSameAsStatue()) {
+            var leftWallRemove = "insideW1";
+            var rightWallRemove = state.right.whichWallSame();
+            var oldLeft = state.left[leftWallRemove];
+            var oldRight = state.right[rightWallRemove];
+            var newLeft = null;
+            var newRight = null;
+
+
+            if (prev === "left") {
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+            } else {
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.left}.`
+                });
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.left} ${Localization.dictionary.take} ${this._toIcon(oldLeft)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+                prev = "right";
+            }
+
+            newRight = oldLeft;
+            newLeft = oldRight;
+            state.left[leftWallRemove] = newLeft;
+            state.right[rightWallRemove] = newRight;
+            state.left.shadows += newLeft;
+            state.right.shadows += newRight;
+            
+        } else if (state.right.hasWallDouble() && state.middle.hasSameAsStatue()) {
+            var middleWallRemove = state.middle.whichWallSame();
+            var rightWallRemove =  "insideW1";
+            var oldMiddle = state.middle[middleWallRemove];
+            var oldRight = state.right[rightWallRemove];
+            var newMiddle = null;
+            var newRight = null;
+
+
+            if (prev === "right") {
+        
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+            } else {
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+
+                prev = "middle";
+            }
+
+            newRight = oldMiddle;
+            newMiddle = oldRight;
+            state.middle[middleWallRemove] = newMiddle;
+            state.right[rightWallRemove] = newRight;
+            state.middle.shadows += newMiddle;
+            state.right.shadows += newRight;
+        } else if (state.right.hasSameAsStatue() && state.middle.hasWallDouble()) {
+            var middleWallRemove =  "insideW1";
+            var rightWallRemove = state.right.whichWallSame();
+            var oldMiddle = state.middle[middleWallRemove];
+            var oldRight = state.right[rightWallRemove];
+            var newMiddle = null;
+            var newRight = null;
+
+
+            if (prev === "right") {
+        
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+            } else {
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.middle} ${Localization.dictionary.take} ${this._toIcon(oldMiddle)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.right}.`
+                });
+
+                stepsI.push({
+                    type: 'instruction',
+                    text: `${Localization.dictionary.right} ${Localization.dictionary.take} ${this._toIcon(oldRight)} 
+                        ${Localization.dictionary.deposit} ${Localization.dictionary.middle}.`
+                });
+
+                prev = "middle";
+            }
+
+            newRight = oldMiddle;
+            newMiddle = oldRight;
+            state.middle[middleWallRemove] = newMiddle;
+            state.right[rightWallRemove] = newRight;
+            state.middle.shadows += newMiddle;
+            state.right.shadows += newRight;
+        } 
 
         stepsI.push({
             type: 'infoW1',
@@ -846,9 +936,24 @@ const Encounter4 = {
                 ${Localization.dictionary.right}: ${this._toIcon(state.right.insideW1+state.right.insideW2)}`
         });
 
+        if(!state.left.innerSolved() || !state.middle.innerSolved() || !state.right.innerSolved()) {
+            throw new Error("Not solved correctly");
+        }
+
         var temp = null;
         var temp2 = null;
+        var first = null;
+        var second = null;
+        var stateF = null;
+        var stateS = null;
         var count = 0;
+        stepsO.push({
+            type: 'info',
+            text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
+                ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
+                ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
+        });
+        
         while (true) {
             if (state.left.outsideSolved() && state.middle.outsideSolved() && state.right.outsideSolved()) {
                 break;
@@ -859,369 +964,125 @@ const Encounter4 = {
                 break;
             }
 
-            if (start == "left") {
-                if(state.left.outsideSolved()) {
-                    if (prev === "middle") {
-                        start = "right";
-                    } else {
-                        start = "middle";
-                    }
-                } else {
-                    temp = state.left.toRemove();
-                    if (prev === "middle") {
-                        if (state.right.toAdd().includes(temp)) {
-                            temp2 = state.right.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.left}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.right}.`
-                            });
+            if (prev === "left") {
+                if (state.middle.outsideSolved()) {
+                    first = Localization.dictionary.right;
+                    second = Localization.dictionary.left;
+                    stateF = state.right;
+                    stateS = state.left;
 
-                            state.left.swap(temp, temp2);
-                            state.right.swap(temp2, temp);
+                    temp = stateF.toRemove();
+                    temp2 = stateS.toRemove(temp);
+                } else if (state.right.outsideSolved()) {
+                    first = Localization.dictionary.middle;
+                    second = Localization.dictionary.left;
+                    stateF = state.middle;
+                    stateS = state.left;
 
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "right";
-                            start = "middle";
-                        } else {
-                            temp2 = state.middle.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.left}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.middle}.`
-                            });
-
-                            state.left.swap(temp, temp2);
-                            state.middle.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "middle";
-                            start = "right";
-                        }   
-                    } else {
-                        if (state.middle.toAdd().includes(temp)) {
-                            temp2 = state.middle.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.left}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.middle}.`
-                            });
-
-                            state.left.swap(temp, temp2);
-                            state.middle.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "middle";
-                            start = "right";
-                        } else {
-                            temp2 = state.right.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.left}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.right}.`
-                            });
-
-                            state.left.swap(temp, temp2);
-                            state.right.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "right";
-                            start = "middle";
-                        }   
-                    }
-                }
-            } else if (start == "middle") {
-                if(state.middle.outsideSolved()) {
-                    if (prev === "left") {
-                        start = "right";
-                    } else {
-                        start = "left";
-                    }
+                    temp = stateF.toRemove();
+                    temp2 = stateS.toRemove(temp);
                 } else {
                     temp = state.middle.toRemove();
-                    if (prev === "left") {
-                        if (state.right.toAdd().includes(temp)) {
-                            temp2 = state.right.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.middle}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.right}.`
-                            });
-
-                            state.middle.swap(temp, temp2);
-                            state.right.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "right";
-                            start = "left";
-                        } else {
-                            temp2 = state.left.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.middle}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.left}.`
-                            });
-
-                            state.middle.swap(temp, temp2);
-                            state.left.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "left";
-                            start = "right";
-                        }   
+                    first = Localization.dictionary.middle;
+                    stateF = state.middle;
+                    if (state.right.toAdd().includes(temp)) {
+                        temp2 = state.right.toRemove(temp);
+                        second = Localization.dictionary.right;
+                        stateS = state.right;
+                        prev = "right";
                     } else {
-                        if (state.left.toAdd().includes(temp)) {
-
-                            temp2 = state.left.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.middle}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.left}.`
-                            });
-
-                            state.middle.swap(temp, temp2);
-                            state.left.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "left";
-                            start = "right";
-                        } else {
-                            temp2 = state.right.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.middle}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.right}.`
-                            });
-
-                            state.middle.swap(temp, temp2);
-                            state.right.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "right";
-                            start = "left";
-                        }   
+                        temp2 = state.left.toRemove(temp);
+                        second = Localization.dictionary.left;
+                        stateS = state.left;
                     }
-
                 }
+            } else if (prev === "middle") {
+                if (state.left.outsideSolved()) {
+                    first = Localization.dictionary.right;
+                    second = Localization.dictionary.middle;
+                    stateF = state.right;
+                    stateS = state.middle;
 
-            } else {
-                if(state.right.outsideSolved()) {
-                    if (prev === "middle") {
-                        start = "left";
-                    } else {
-                        start = "middle";
-                    }
+                    temp = stateF.toRemove();
+                    temp2 = stateS.toRemove(temp);
+                } else if (state.right.outsideSolved()) {
+                    first = Localization.dictionary.left;
+                    second = Localization.dictionary.middle;
+                    stateF = state.left
+                    stateS = state.middle;
+
+                    temp = stateF.toRemove();
+                    temp2 = stateS.toRemove(temp);
                 } else {
-                    temp = state.right.toRemove();
-                    if (prev === "middle") {
-                        if (state.left.toAdd().includes(temp)) {
-                            temp2 = state.left.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.right}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.left}.`
-                            });
-
-                            state.right.swap(temp, temp2);
-                            state.left.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "left";
-                            start = "middle";
-                        } else {
-                            temp2 = state.middle.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.right}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.middle}.`
-                            });
-
-                            state.right.swap(temp, temp2);
-                            state.middle.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "middle";
-                            start = "left";
-                        }   
+                    temp = state.left.toRemove();
+                    first = Localization.dictionary.left;
+                    stateF = state.left;
+                    if (state.right.toAdd().includes(temp)) {
+                        temp2 = state.right.toRemove(temp);
+                        second = Localization.dictionary.right;
+                        stateS = state.right;
+                        prev = "right";
                     } else {
-                        if (state.middle.toAdd().includes(temp)) {
-                            temp2 = state.middle.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.right}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.middle}.`
-                            });
-
-                            state.right.swap(temp, temp2);
-                            state.middle.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "middle";
-                            start = "left";
-                        } else {
-                            temp2 = state.left.toRemove(temp);
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.right}.`
-                            });
-                
-                            stepsO.push({
-                                type: 'instruction',
-                                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
-                                    ${Localization.dictionary.from} ${Localization.dictionary.left}.`
-                            });
-
-                            state.right.swap(temp, temp2);
-                            state.left.swap(temp2, temp);
-
-                            stepsO.push({
-                                type: 'info',
-                                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
-                                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
-                                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
-                            });
-
-                            prev = "left";
-                            start = "middle";
-                        }   
-                    }   
-
+                        temp2 = state.middle.toRemove(temp);
+                        second = Localization.dictionary.middle;
+                        stateS = state.middle;
+                    }
                 }
+            } else {
+                if (state.left.outsideSolved()) {
+                    first = Localization.dictionary.middle;
+                    second = Localization.dictionary.right;
+                    stateF = state.middle;
+                    stateS = state.right;
 
+                    temp = stateF.toRemove();
+                    temp2 = stateS.toRemove(temp);
+                } else if (state.middle.outsideSolved()) {
+                    first = Localization.dictionary.left;
+                    second = Localization.dictionary.right;
+                    stateF = state.left
+                    stateS = state.right;
+
+                    temp = stateF.toRemove();
+                    temp2 = stateS.toRemove(temp);
+                } else {
+                    temp = state.left.toRemove();
+                    first = Localization.dictionary.left;
+                    stateF = state.left;
+                    if (state.middle.toAdd().includes(temp)) {
+                        temp2 = state.middle.toRemove(temp);
+                        second = Localization.dictionary.middle;
+                        stateS = state.middle;
+                        prev = "middle";
+                    } else {
+                        temp2 = state.right.toRemove(temp);
+                        second = Localization.dictionary.right;
+                        stateS = state.right;
+                    }
+                } 
             }
+
+            stepsO.push({
+                type: 'instruction',
+                text: `${Localization.dictionary.dissect} ${this._toIcon(temp)} 
+                    ${Localization.dictionary.from} ${first}.`
+            });
+
+            stepsO.push({
+                type: 'instruction',
+                text: `${Localization.dictionary.dissect} ${this._toIcon(temp2)} 
+                    ${Localization.dictionary.from} ${second}.`
+            });
+
+            stateF.swap(temp, temp2);
+            stateS.swap(temp2, temp);
+
+            stepsO.push({
+                type: 'info',
+                text: `${Localization.dictionary.left}: ${this._toIcon(state.left.outside)}, 
+                    ${Localization.dictionary.middle}: ${this._toIcon(state.middle.outside)}, 
+                    ${Localization.dictionary.right}: ${this._toIcon(state.right.outside)}`
+            });
         }
 
         return [stepsI, stepsO];
