@@ -1,44 +1,62 @@
 body {
-    background-color: #111;
-    color: #EEE;
+  background-color: #111;
+  color: #eee;
 }
 
 .card {
-    background-color: #0D0D0D;
+  background-color: #0d0d0d;
 }
 
 .se-btn-group {
-    width: 100%;
+  width: 100%;
 }
 
-    .se-btn-group button {
-        width: 33.3%;
-    }
+.se-btn-group button {
+  width: 33.3%;
+}
 
 .symbol {
-    display: inline-block;
-    background-size: 50px 50px;
-    width: 50px;
-    height: 50px;
+  display: inline-block;
+  background-size: 50px 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .symbol-sm {
-    display: inline-block;
-    background-size: 20px 20px;
-    width: 20px;
-    height: 20px;
+  display: inline-block;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
 }
 
 button.btn-light > .symbol {
-    filter: invert(100%);
+  filter: invert(100%);
 }
 
-.circle { background-image: url(/assets/img/circle.svg); }
-.square { background-image: url(/assets/img/square.svg); }
-.triangle { background-image: url(/assets/img/triangle.svg); }
-.sphere { background-image: url(/assets/img/sphere.svg); }
-.cube { background-image: url(/assets/img/cube.svg); }
-.pyramid { background-image: url(/assets/img/pyramid.svg); }
-.cylinder { background-image: url(/assets/img/cylinder.svg); }
-.prism { background-image: url(/assets/img/prism.png); }
-.cone { background-image: url(/assets/img/cone.svg); }
+.circle {
+  background-image: url(/assets/img/circle.svg);
+}
+.square {
+  background-image: url(/assets/img/square.svg);
+}
+.triangle {
+  background-image: url(/assets/img/triangle.svg);
+}
+.sphere {
+  background-image: url(/assets/img/sphere.svg);
+}
+.cube {
+  background-image: url(/assets/img/cube.svg);
+}
+.pyramid {
+  background-image: url(/assets/img/pyramid.svg);
+}
+.cylinder {
+  background-image: url(/assets/img/cylinder.svg);
+}
+.prism {
+  background-image: url(/assets/img/prism.png);
+}
+.cone {
+  background-image: url(/assets/img/cone.svg);
+}

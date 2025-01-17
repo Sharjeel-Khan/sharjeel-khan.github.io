@@ -3,7 +3,7 @@
 }
 
 #aboutmepicture {
-  max-width:400px;
+  max-width: 400px;
   border: 1px solid;
 }
 
@@ -12,23 +12,25 @@
   border: 1px solid;
 }
 
-.button a{
-  display:inline-block;
-  background-color:#495057;
-  color:#fff!important;
-  text-align:center;
-  font-size:1.5rem;
-  line-height:3.5rem;
+.button a {
+  display: inline-block;
+  background-color: #495057;
+  color: #fff !important;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 3.5rem;
 }
 
-.button a:hover{background-color:#6e89d4;}
+.button a:hover {
+  background-color: #6e89d4;
+}
 
 .text-light {
   color: #878f97 !important;
 }
 
 .pub a {
-  font-size:1rem;
+  font-size: 1rem;
   line-height: normal;
 }
 
@@ -39,13 +41,13 @@
 }
 
 #paper {
-  color: #E3735E;
+  color: #e3735e;
 }
 
 #talk {
-  color: #6495ED;
+  color: #6495ed;
 }
 
 #career {
-  color: #00A36C;
+  color: #00a36c;
 }
