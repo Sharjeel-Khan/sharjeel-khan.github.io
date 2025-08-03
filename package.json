@@ -36,22 +36,22 @@
     "url": "https://github.com/StartBootstrap/startbootstrap-resume.git"
   },
   "dependencies": {
-    "@amcharts/amcharts4": "^4.10.16",
-    "@popperjs/core": "^2.11.6",
-    "bootstrap": "5.2.3",
+    "@amcharts/amcharts4": "^4.10.40",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "5.3.7",
     "eazy-logger": "^4.1.0",
-    "npm": "^11.1.0"
+    "npm": "^11.5.2"
   },
   "devDependencies": {
-    "autoprefixer": "10.4.14",
-    "browser-sync": "^3.0.2",
-    "chokidar": "3.5.3",
-    "concurrently": "^8.2.0",
-    "postcss": "8.4.31",
-    "prettier": "2.8.6",
-    "pug": "^3.0.2",
-    "sass": "1.60.0",
-    "shelljs": "0.8.5",
+    "autoprefixer": "10.4.21",
+    "browser-sync": "^3.0.4",
+    "chokidar": "4.0.3",
+    "concurrently": "^9.2.0",
+    "postcss": "8.5.6",
+    "prettier": "3.6.2",
+    "pug": "^3.0.3",
+    "sass": "1.89.2",
+    "shelljs": "0.10.0",
     "upath": "2.0.1"
   }
 }
