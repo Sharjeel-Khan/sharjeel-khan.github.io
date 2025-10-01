@@ -12134,16 +12134,28 @@ p.lead {
   border: 1px solid;
 }
 
-#paper {
-  color: #e3735e;
+#research {
+  color: #a020f0;
 }
 
 #talk {
   color: #6495ed;
 }
 
+#blog {
+  color: #c41e3a;
+}
+
 #career {
   color: #00a36c;
+}
+
+#service {
+  color: #ec9706;
+}
+
+.more-updates {
+  display: none;
 }
 
 section.resume-section {
