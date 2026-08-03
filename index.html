@@ -3,9 +3,20 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Sharjeel Khan's website</title>
+        <meta name="description" content="Sharjeel Khan — Software Engineer at Google on the Android LLVM Toolchain team. Ph.D. in Computer Science from Georgia Tech. Research in compilers, programming languages, and systems security." />
+        <meta name="author" content="Sharjeel Khan" />
+        <!-- Open Graph / social preview-->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sharjeel-khan.github.io/" />
+        <meta property="og:title" content="Sharjeel Khan" />
+        <meta property="og:description" content="Software Engineer at Google · Android LLVM Toolchain · Ph.D. Georgia Tech · Compilers, PL, and Systems Security" />
+        <meta property="og:image" content="https://sharjeel-khan.github.io/assets/img/profile.png" />
+        <!-- Twitter Card-->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Sharjeel Khan" />
+        <meta name="twitter:description" content="Software Engineer at Google · Android LLVM Toolchain · Ph.D. Georgia Tech · Compilers, PL, and Systems Security" />
+        <meta name="twitter:image" content="https://sharjeel-khan.github.io/assets/img/profile.png" />
+        <title>Sharjeel Khan</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -15,21 +26,71 @@
         <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            .pub-filter {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+                margin-bottom: 1.5rem;
+            }
+            .btn-filter {
+                padding: 0.3rem 0.9rem;
+                font-size: 0.8rem;
+                border-radius: 20px;
+                cursor: pointer;
+                border: 1px solid #495057;
+                background: transparent;
+                color: #495057;
+                transition: all 0.2s;
+            }
+            .btn-filter:hover {
+                background: #495057;
+                color: #fff;
+            }
+            .btn-filter.active {
+                background: #495057;
+                color: #fff;
+                border-color: #495057;
+            }
+            .pub-badge {
+                font-size: 0.62rem;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                padding: 0.15rem 0.45rem;
+                border-radius: 3px;
+                background: #6e89d4;
+                color: #fff;
+                display: inline-block;
+                margin-bottom: 0.3rem;
+            }
+            .pub-item + .pub-item {
+                border-top: 1px solid #dee2e6;
+                padding-top: 0.75rem;
+                margin-top: 0.25rem;
+            }
+        </style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">Sharjeel Khan</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/SK.png" alt="" /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" id="nav-logo" src="assets/img/SK.png" alt="" /></span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#publications">Publications</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#travel">Travel</a></li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="dark-mode-toggle" type="button" title="Toggle dark mode">
+                            <i class="fas fa-moon me-1"></i>
+                            Dark Mode
+                        </button>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -38,150 +99,185 @@
             <!-- Home-->
             <section class="resume-section" id="home">
                 <div class="resume-section-content">
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start mb-5">
                         <div class="flex-grow-1">
                             <h1 class="mb-0">Sharjeel Khan</h1>
-                            <div class="subheading mb-0">Software Engineer @ Google</div>
-                            <div class="heading mb-0">Mountain View, CA</div>
-                            <div class="social-icons">
+                            <div class="subheading mb-2">Software Engineer @ Google</div>
+                            <div class="mb-1">Mountain View, CA</div>
+                            <div class="stats-row mb-3">
+                                <span class="stat-item">13 papers</span>
+                                <span class="stat-sep">·</span>
+                                <span class="stat-item">25 countries</span>
+                                <span class="stat-sep">·</span>
+                                <span class="stat-item">60 cities</span>
+                            </div>
+                            <div class="social-icons mb-4">
                                 <a class="social-icon" href="https://www.linkedin.com/in/sharjeel-khan/"><i class="fab fa-linkedin-in"></i></a>
                                 <a class="social-icon" href="https://github.com/Sharjeel-Khan"><i class="fab fa-github"></i></a>
                                 <a class="social-icon" href="https://scholar.google.com/citations?user=Ww7PDH4AAAAJ&amp;hl=en"><i class="ai ai-google-scholar"></i></a>
                                 <a class="social-icon" href="https://dblp.uni-trier.de/pers/hd/k/Khan:Sharjeel"><i class="ai ai-dblp"></i></a>
                             </div>
-                            <br />
-                            <br />
-                            <table>
-                                <tr>
-                                    <td>
-                                        <h3 class="mb-0">Recent Updates</h3>
-                                        <ul>
-                                            <li>
-                                                [Oct 2025]
-                                                <b id="talk">[Talk]</b>
-                                                I will be giving a lightning talk, _FORTIFY_SOURCE in Android, at the 2025 Workshop on Supporting Memory Safety in LLVM.
-                                            </li>
-                                            <li>
-                                                [Oct 2025]
-                                                <b id="talk">[Talk]</b>
-                                                <a href="https://austinjadams.com/">Austin Adams</a>
-                                                will be giving a talk, Leveraging MLIR to Compile a Basis-Oriented Quantum Programming Language, about
-                                                <a href="https://qwerty.cc.gatech.edu/">our Qwerty work</a>
-                                                at LLVM Developer Meeting 2025.
-                                            </li>
-                                            <li>
-                                                [Sep 2025]
-                                                <b id="service">[Service]</b>
-                                                I have become a co-organizer of the
-                                                <a href="https://discourse.llvm.org/t/llvm-bay-area-monthly-meetup-mon-sep-29-25-6pm/88324/1">LLVM Bay Area Monthly Meetup</a>
-                                                . It is a monthly gathering for LLVM developers and users in the Bay Area.
-                                            </li>
-                                            <li>
-                                                [Sep 2025]
-                                                <b id="blog">[Post]</b>
-                                                <b id="talk">[Talk]</b>
-                                                We have been working on integrating the sandboxing technique, Lightweight Fault Isolation, into Android and posted a
-                                                <a href="https://discourse.llvm.org/t/rfc-lightweight-fault-isolation-lfi-efficient-native-code-sandboxing-upstream-lfi-target-and-compiler-changes/88380">RFC</a>
-                                                on upstreaming the compiler changes into LLVM. Zachary Yedidia and Tal Garfinkel will also be giving a talk about this work at the LLVM Developer Meeting 2025.
-                                            </li>
-                                            <li>
-                                                [Jul 2025]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, Qwerty: A Basis-Oriented Quantum Programming Language, got accepted to QCE 2025.
-                                            </li>
-                                            <li>
-                                                [Feb 2025]
-                                                <b id="service">[Service]</b>
-                                                I am on the Artifact Evaluation Committee for PLDI 2025.
-                                            </li>
-                                            <li>
-                                                [Jan 2025]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, Tackling ML-based Dynamic Mispredictions using Statically Computed Invariants for Attack Surface Reduction, got accepted to ASPLOS 2025.
-                                            </li>
-                                            <li>
-                                                [Dec 2024]
-                                                <b id="career">[Career]</b>
-                                                I began my job in the Android LLVM Toolchain team at Google.
-                                            </li>
-                                            <li>
-                                                [Nov 2024]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, ASDF: A Compiler for Qwerty, a Basis-Oriented Quantum Programming Language, got accepted to CGO 2025.
-                                            </li>
-                                            <li class="more-updates">
-                                                [Sep 2024]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, Real-time Digital RF Emulation - II: A Near Memory Custom Accelerator, got accepted to IEEE Transactions on Radar Systems 2024.
-                                            </li>
-                                            <li class="more-updates">
-                                                [Sep 2024]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, Real-time Digital RF Emulation - I: The Direct Path Computational Model, got accepted to IEEE Transactions on Radar Systems 2024.
-                                            </li>
-                                            <li class="more-updates">
-                                                [May 2024]
-                                                <b id="career">[Career]</b>
-                                                I proposed my thesis "A System for Faster Software Verification and Better Compiler Optimizations through Symbiosis" and officially became a PhD candidate.
-                                            </li>
-                                            <li class="more-updates">
-                                                [Mar 2024]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, Pythia: Compiler-Guided Defense Against Non-Control Data Attacks, got accepted to ASPLOS 2024.
-                                            </li>
-                                            <li class="more-updates">
-                                                [Oct 2023]
-                                                <b id="talk">[Talk]</b>
-                                                I gave a lightning talk about validating orderfiles at the LLVM Developers Meeting.
-                                            </li>
-                                            <li class="more-updates">
-                                                [Sep 2023]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, Beacons: A End-to-End Compiler Framework for Predicting and Utilizing Dynamic Loop Characteristics, got accepted to OOPSLA 2023.
-                                            </li>
-                                            <li class="more-updates">
-                                                [May 2023]
-                                                <b id="career">[Career]</b>
-                                                I began my internship in the Android LLVM team at Google.
-                                            </li>
-                                            <li class="more-updates">
-                                                [Oct 2023]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, Decker: Attack Surface Reduction via On-demand Code Mapping, got accepted to ASPLOS 2023.
-                                            </li>
-                                            <li class="more-updates">
-                                                [Jan 2023]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, A High Performance Computing Architecture for Real-Time Digital Emulation of RF Interactions, got accepted to RadarConf 2023.
-                                            </li>
-                                            <li class="more-updates">
-                                                [June 2022]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, Com-CAS: Effective Cache Apportioning under Compiler Guidance, got accepted to PACT 2022.
-                                            </li>
-                                            <li class="more-updates">
-                                                [May 2022]
-                                                <b id="career">[Career]</b>
-                                                I began my internship in the Redex team at Meta.
-                                            </li>
-                                            <li class="more-updates">
-                                                [Apr 2022]
-                                                <b id="research">[Paper]</b>
-                                                Our paper, VICO : Demand-driven Verification for Improving Compiler Optimizations, got accepted to ICS 2022.
-                                            </li>
-                                            <li class="more-updates">
-                                                [Apr 2022]
-                                                <b id="career">[Career]</b>
-                                                I was chosen as President of the School of Computer Science Graduate Student Association.
-                                            </li>
-                                        </ul>
-                                        <!-- Add this button right after the <ul>-->
-                                        <div class="text-center"><a class="btn btn-outline-primary" id="show-more-btn" href="#!">Show More Updates</a></div>
-                                    </td>
-                                </tr>
-                            </table>
+                            <h3 class="mb-3">Recent Updates</h3>
+                            <ul class="update-list">
+                                <li class="update-item">
+                                    <span class="update-date">Oct 2026</span>
+                                    <span class="update-badge badge-talk">Talk</span>
+                                    <a href="https://zyedidia.github.io/">Zachary Yedidia</a>
+                                    and I will be giving a quick talk about new updates to Lightweight Fault Isolation and its application in Android at LLVM Developer's Meeting 2026.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">July 2026</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, DeckerPlus: Whole Program Attack Surface Reduction via Compiler Analysis and Transformations, got accepted to ACM Transactions on Privacy and Security 2026.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">June 2026</span>
+                                    <span class="update-badge badge-service">Service</span>
+                                    I am on the Program Committee for LLVM Developer's Meeting 2026.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">May 2026</span>
+                                    <span class="update-badge badge-blog">Post</span>
+                                    I recently posted a
+                                    <a href="https://discourse.llvm.org/t/rfc-lightweight-fault-isolation-lfi-target-for-x86-64/90774">RFC</a>
+                                    on upstreaming the compiler changes for the Lightweight Fault Isolation Target for x86-64 into LLVM.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">Dec 2025</span>
+                                    <span class="update-badge badge-service">Service</span>
+                                    I am on the Artifact Evaluation Committee for CC 2026.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">Oct 2025</span>
+                                    <span class="update-badge badge-talk">Talk</span>
+                                    I gave a lightning talk, _FORTIFY_SOURCE in Android, at the 2025 Workshop on Supporting Memory Safety in LLVM.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">Oct 2025</span>
+                                    <span class="update-badge badge-talk">Talk</span>
+                                    <a href="https://austinjadams.com/">Austin Adams</a>
+                                    gave a talk, Leveraging MLIR to Compile a Basis-Oriented Quantum Programming Language, about
+                                    <a href="https://qwerty.cc.gatech.edu/">our Qwerty work</a>
+                                    at LLVM Developer Meeting 2025.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">Sep 2025</span>
+                                    <span class="update-badge badge-service">Service</span>
+                                    I am a co-organizer of the
+                                    <a href="https://discourse.llvm.org/t/llvm-bay-area-monthly-meetup-mon-sep-29-25-6pm/88324/1">LLVM Bay Area Monthly Meetup</a>
+                                    , a monthly gathering for LLVM developers and users in the Bay Area.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">Sep 2025</span>
+                                    <span class="update-badge badge-blog">Post</span>
+                                    <span class="update-badge badge-talk">Talk</span>
+                                    I posted an
+                                    <a href="https://discourse.llvm.org/t/rfc-lightweight-fault-isolation-lfi-efficient-native-code-sandboxing-upstream-lfi-target-and-compiler-changes/88380">RFC</a>
+                                    on upstreaming Lightweight Fault Isolation into LLVM.
+                                    <a href="https://zyedidia.github.io/">Zachary Yedidia</a>
+                                    and Tal Garfinkel also gave a talk on this work at LLVM Developer Meeting 2025.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">Jul 2025</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, Qwerty: A Basis-Oriented Quantum Programming Language, got accepted to QCE 2025.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">Feb 2025</span>
+                                    <span class="update-badge badge-service">Service</span>
+                                    I am on the Artifact Evaluation Committee for PLDI 2025.
+                                </li>
+                                <li class="update-item">
+                                    <span class="update-date">Jan 2025</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, Tackling ML-based Dynamic Mispredictions using Statically Computed Invariants for Attack Surface Reduction, got accepted to ASPLOS 2025.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Dec 2024</span>
+                                    <span class="update-badge badge-career">Career</span>
+                                    I began my job as a Software Engineer in the Android LLVM Toolchain team at Google.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Nov 2024</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, ASDF: A Compiler for Qwerty, a Basis-Oriented Quantum Programming Language, got accepted to CGO 2025.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Sep 2024</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, Real-time Digital RF Emulation - II: A Near Memory Custom Accelerator, got accepted to IEEE Transactions on Radar Systems 2024.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Sep 2024</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, Real-time Digital RF Emulation - I: The Direct Path Computational Model, got accepted to IEEE Transactions on Radar Systems 2024.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">May 2024</span>
+                                    <span class="update-badge badge-career">Career</span>
+                                    I proposed my thesis "A System for Faster Software Verification and Better Compiler Optimizations through Symbiosis" and officially became a PhD candidate.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Mar 2024</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, Pythia: Compiler-Guided Defense Against Non-Control Data Attacks, got accepted to ASPLOS 2024.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Nov 2023</span>
+                                    <span class="update-badge badge-blog">Post</span>
+                                    My Google internship work on Orderfiles in Android was posted as
+                                    <a href="https://android-developers.googleblog.com/2023/11/orderfiles-in-android.html">a blog post</a>
+                                    on Android Developers Blog.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Oct 2023</span>
+                                    <span class="update-badge badge-talk">Talk</span>
+                                    I gave a lightning talk about validating orderfiles at the LLVM Developers Meeting.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Oct 2023</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, Decker: Attack Surface Reduction via On-demand Code Mapping, got accepted to ASPLOS 2023.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Sep 2023</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, Beacons: A End-to-End Compiler Framework for Predicting and Utilizing Dynamic Loop Characteristics, got accepted to OOPSLA 2023.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">May 2023</span>
+                                    <span class="update-badge badge-career">Career</span>
+                                    I began my internship in the Android LLVM Toolchain team at Google.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Jan 2023</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, A High Performance Computing Architecture for Real-Time Digital Emulation of RF Interactions, got accepted to RadarConf 2023.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">June 2022</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, Com-CAS: Effective Cache Apportioning under Compiler Guidance, got accepted to PACT 2022.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">May 2022</span>
+                                    <span class="update-badge badge-career">Career</span>
+                                    I began my internship in the Redex team at Meta.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Apr 2022</span>
+                                    <span class="update-badge badge-research">Paper</span>
+                                    Our paper, VICO : Demand-driven Verification for Improving Compiler Optimizations, got accepted to ICS 2022.
+                                </li>
+                                <li class="update-item more-updates">
+                                    <span class="update-date">Apr 2022</span>
+                                    <span class="update-badge badge-career">Career</span>
+                                    I was chosen as President of the School of Computer Science Graduate Student Association.
+                                </li>
+                            </ul>
+                            <div class="text-center mt-3"><a class="btn btn-outline-primary" id="show-more-btn" href="#!">Show More Updates</a></div>
                         </div>
-                        <div class="flex-shrink-0"><img class="img-fluid img-profile rounded-circle" id="profile" src="assets/img/profile.png" /></div>
+                        <div class="flex-shrink-0 ms-md-4 mt-3 mt-md-0"><img class="img-fluid img-profile rounded-circle" id="profile" src="assets/img/profile.png" /></div>
                     </div>
                 </div>
             </section>
@@ -192,17 +288,17 @@
                     <h2 class="mb-5">About Me</h2>
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <p>Hey, my name is Sharjeel Khan. I am a Software Engineer at Google working on the Android LLVM Toolchain team. I help maintain and release the Android LLVM Compiler Toolchain to first-party developers and to external developers through the Android Native Development Kits (NDKs). In addition, I contribute to LLVM on behalf of Android to fix issues and to upstream features. Recently, I help organize the LLVM Bay Area Social, a casual gathering of LLVM developers in the Bay Area.</p>
+                            <p>I am a Software Engineer at Google on the Android LLVM Toolchain team. I help maintain and release the Android LLVM Compiler Toolchain to first-party developers and through the Android NDK. I also contribute upstream to LLVM on behalf of Android, landing fixes and features, and co-organize the LLVM Bay Area Monthly Meetup.</p>
                             <p>
-                                I was a Computer Science Ph.D. candidate at Georgia Institute of Technology working with
-                                <a href="https://sites.google.com/site/profsantoshpande/">Dr. Santosh Pande</a>
-                                . My research interests was in the intersection of programming languages, security, and compilers research. Before I started my Ph.D., I was a Research Assistant at Carnegie Mellon University working under
+                                Previously, I completed my Ph.D. in Computer Science at the Georgia Institute of Technology, advised by
+                                <a href="https://www.cc.gatech.edu/people/santosh-pande">Dr. Santosh Pande</a>
+                                . My research spanned the intersection of compilers, programming languages, and systems security. Before that, I was a Research Assistant at Carnegie Mellon University with
                                 <a href="https://www.cs.cmu.edu/~iliano/">Dr. Iliano Cervesato</a>
                                 and
                                 <a href="http://www.gisellereis.com/">Dr. Giselle Reis</a>
-                                . I also did my Bachelors in Computer Science from Carnegie Mellon University.
+                                , where I also earned my B.S. in Computer Science.
                             </p>
-                            <p>My hobbies range from playing video games (currently Hollow Knight: Silksong), watching TV shows (currently Wednesday), reading manga (One Piece), or trying out new restaurants. In addition, I love to travel to new countries and meet new people. I have been to around 20+ countries and 40+ cities. My most recent trip was to Albuquerque, New Mexico to attend IEEE Quantum Week because my paper, Qwerty, was accepted to the QCE conference.</p>
+                            <p>Outside of work, I enjoy video games (currently Halo Campaign), TV shows (currently The Pitt), manga (One Piece), and trying new restaurants. I also love to travel — I have visited 25 countries and over 60 cities. My most recent trips took me across the United States for the FIFA World Cup 2026.</p>
                             <div class="col-lg-12 text-center button">
                                 <a class="btn btn-lg btn-outline" href="assets/files/CV.pdf">
                                     <i class="fa fa-file-download"></i>
@@ -215,453 +311,865 @@
                 </div>
             </section>
             <hr class="m-0" />
+            <!-- Experience-->
+            <section class="resume-section" id="experience">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Experience</h2>
+                    <div class="experience-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Dec 2024 – Present</div>
+                            <h4 class="mb-0">Software Engineer</h4>
+                            <div class="subheading text-primary mb-0">Google</div>
+                            <p>Work on the Android LLVM Toolchain team maintaining and releasing the Android LLVM Compiler Toolchain to first-party developers and through the NDK. Contribute to LLVM upstream on behalf of Android, fixing issues and landing features. Co-organize the LLVM Bay Area Monthly Meetup.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">May 2023 – Aug 2023</div>
+                            <h4 class="mb-0">Software Engineering Intern</h4>
+                            <div class="subheading text-primary mb-0">Google</div>
+                            <p>
+                                Worked on the Android LLVM Toolchain team on Orderfiles in Android. Work was published as a
+                                <a href="https://android-developers.googleblog.com/2023/11/orderfiles-in-android.html">blog post</a>
+                                on the Android Developers Blog and presented as a lightning talk at the LLVM Developers Meeting 2023.
+                            </p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">May 2022 – Aug 2022</div>
+                            <h4 class="mb-0">Software Engineering Intern</h4>
+                            <div class="subheading text-primary mb-0">Meta</div>
+                            <p>Worked on the Redex team, an Android bytecode optimizer for improving app performance.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 2018 – Dec 2024</div>
+                            <h4 class="mb-0">PhD Candidate, Computer Science</h4>
+                            <div class="subheading text-primary mb-0">Georgia Institute of Technology</div>
+                            <p>
+                                Advised by
+                                <a href="https://sites.google.com/site/profsantoshpande/">Dr. Santosh Pande</a>
+                                . Research at the intersection of programming languages, security, and compilers. Proposed thesis "A System for Faster Software Verification and Better Compiler Optimizations through Symbiosis" in May 2024. Published at ASPLOS, OOPSLA, CGO, and more.
+                            </p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">May 2017 – July 2018</div>
+                            <h4 class="mb-0">Research Assistant</h4>
+                            <div class="subheading text-primary mb-0">Carnegie Mellon University</div>
+                            <p>
+                                Worked with
+                                <a href="https://www.cs.cmu.edu/~iliano/">Dr. Iliano Cervesato</a>
+                                and
+                                <a href="http://www.gisellereis.com/">Dr. Giselle Reis</a>
+                                on formal methods, logic, and concurrent linear frameworks.
+                            </p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 2013 – May 2017</div>
+                            <h4 class="mb-0">Bachelor of Science, Computer Science</h4>
+                            <div class="subheading text-primary mb-0">Carnegie Mellon University</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
             <!-- Publications-->
             <section class="resume-section" id="publications">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Publications</h2>
-                    <h3 class="mb-3">
-                        Conference Papers
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Qwerty: A Basis-Oriented Quantum Programming Language</div>
-                                <div class="subheading text-light">
-                                    Austin J. Adams,
-                                    <strong>Sharjeel Khan</strong>
-                                    , Arjun S. Bhamra, Ryan R. Abusaada, Travis S. Humble, Jeffrey S. Young, and Thomas M. Conte.
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://github.com/gt-tinker/qwerty">
-                                            <i class="fa fa-code"></i>
-                                            Code
-                                        </a>
-                                        <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2404.12603">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Preprint
-                                        </a>
+                    <div class="pub-filter mb-4">
+                        <button class="btn btn-sm btn-filter active" data-filter="all">All</button>
+                        <button class="btn btn-sm btn-filter" data-filter="conference">Conference</button>
+                        <button class="btn btn-sm btn-filter" data-filter="journal">Journal</button>
+                        <button class="btn btn-sm btn-filter" data-filter="workshop">Workshop</button>
+                        <button class="btn btn-sm btn-filter" data-filter="preprint">Preprint</button>
+                    </div>
+                    <div class="pub-list">
+                        <div class="pub-item" data-category="journal">
+                            <textarea class="bibtex-data" style="display: none">
+@article{porter2026deckerplus,
+  title={DeckerPlus: Whole Program Attack Surface Reduction via Compiler Analysis and Transformations},
+  author={Porter, Chris and Khan, Sharjeel and Pande, Santosh},
+  journal={ACM Transactions on Privacy and Security},
+  year={2026},
+  publisher={ACM},
+  doi={10.1145/3833877}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">DeckerPlus: Whole Program Attack Surface Reduction via Compiler Analysis and Transformations</div>
+                                    <div class="subheading text-light">
+                                        Chris Porter,
+                                        <strong>Sharjeel Khan</strong>
+                                        , and Santosh Pande.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/abs/10.1145/3833877">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">QCE 2025</div></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Tackling ML-based Dynamic Mispredictions using Statically Computed Invariants for Attack Surface Reduction</div>
-                                <div class="subheading text-light">
-                                    Chris Porter*,
-                                    <strong>Sharjeel Khan*</strong>
-                                    , Kangqi Ni, and Santosh Pande.
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Journal</span>
+                                    <div class="subheading text-primary">ACM TOPS 2026</div>
                                 </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3676641.3716276">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                        <a class="btn btn-lg btn-outline" href="https://zenodo.org/records/14777049">
-                                            <i class="fa fa-code"></i>
-                                            Code
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">ASPLOS 2025</div></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">ASDF: A Compiler for Qwerty, a Basis-Oriented Quantum Programming Language</div>
-                                <div class="subheading text-light">
-                                    Austin J. Adams,
-                                    <strong>Sharjeel Khan</strong>
-                                    , Arjun Bhamra, Ryan Abusaada, Anthony M. Cabrera, Cameron Hoechst, Travis S. Humble, Jeffrey S. Young, and Thomas M. Conte.
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3696443.3708966">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                        <a class="btn btn-lg btn-outline" href="https://arxiv.org/pdf/2501.13262">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Preprint
-                                        </a>
-                                        <a class="btn btn-lg btn-outline" href="https://doi.org/10.5281/zenodo.14080494">
-                                            <i class="fa fa-code"></i>
-                                            Code
-                                        </a>
-                                        <a class="btn btn-lg btn-outline" href="https://github.com/gt-tinker/qwerty">
-                                            <i class="fab fa-github"></i>
-                                            GitHub
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">CGO 2025</div></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Pythia: Compiler-Guided Defense Against Non-Control Data Attacks</div>
-                                <div class="subheading text-light">
-                                    <strong>Sharjeel Khan</strong>
-                                    , Bodhisatwa Chatterjee, and Santosh Pande.
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3620666.3651343">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="assets/files/posters/Pythia.pdf">
-                                            <i class="fa fa-file-image"></i>
-                                            Poster
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="assets/files/slides/ASPLOS24.pdf">
-                                            <i class="fa fa-file-powerpoint"></i>
-                                            Slides
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://youtu.be/eihLepVzWCc?si=cxIrCbpyviz3D4kP">
-                                            <i class="fa fa-video"></i>
-                                            Short Talk
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">ASPLOS 2024</div></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Beacons: A End-to-End Compiler Framework for Predicting and Utilizing Dynamic Loop Characteristics</div>
-                                <div class="subheading text-light">
-                                    Girish Mururu*,
-                                    <strong>Sharjeel Khan*</strong>
-                                    , Bodhisatwa Chatterjee*, Chao Chen, Chris Porter, Ada Gavrilovska, and Santosh Pande. (* Authors contributed equally )
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3622803">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2103.06647">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Preprint
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://doi.org/10.5281/zenodo.8333860">
-                                            <i class="fa fa-code"></i>
-                                            Code
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="assets/files/posters/Beacons.pdf">
-                                            <i class="fa fa-file-image"></i>
-                                            Poster
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="assets/files/slides/OOPSLA23.pdf">
-                                            <i class="fa fa-file-powerpoint"></i>
-                                            Slides
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://www.youtube.com/live/eqpA_yXia7Q?si=zQrr70DKqs0qk9rI&amp;t=11309">
-                                            <i class="fa fa-video"></i>
-                                            Conference Talk
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">OOPSLA 2023</div></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">A High Performance Computing Architecture for Real-Time Digital Emulation of RF Interactions</div>
-                                <div class="subheading text-light">
-                                    Mandovi Mukherjee, Nael Mizanur Rahman, Coleman DeLude, Joseph Driscoll, Uday Kamal, Jongseok Woo, Jamin Seo, Sudarshan Sharma, Xiangyu Mao, Payman Behnam,
-                                    <strong>Sharjeel Khan</strong>
-                                    , Daehyun Kim, Jianming Tong, Prachi Sinha, Santosh Pande, Tushar Krishna, Justin Romberg, Madhavan Swaminathan, and Saibal Mukhopadhyay.
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://ieeexplore.ieee.org/document/10149577">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">RadarConf 2023</div></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Decker: Attack Surface Reduction via On-demand Code Mapping</div>
-                                <div class="subheading text-light">
-                                    Chris Porter,
-                                    <strong>Sharjeel Khan</strong>
-                                    , and Santosh Pande.
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://doi.acm.org?doi=3575693.3575734">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2110.09557">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Preprint
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://doi.org/10.5281/zenodo.7222072">
-                                            <i class="fa fa-code"></i>
-                                            Code
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="assets/files/posters/Decker.pdf">
-                                            <i class="fa fa-file-image"></i>
-                                            Poster
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="assets/files/slides/ASPLOS23.pdf">
-                                            <i class="fa fa-file-powerpoint"></i>
-                                            Slides
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://youtu.be/qZoHw7RUEFA?si=VHDaBzbtYK3LGCdj">
-                                            <i class="fa fa-video"></i>
-                                            Conference Talk
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://youtu.be/0wlYse9UDDU?si=x7C59kOzRRFbpgu0">
-                                            <i class="fa fa-video"></i>
-                                            Short Talk
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">ASPLOS 2023</div></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Com-CAS: Effective Cache Apportioning under Compiler Guidance</div>
-                                <div class="subheading text-light">
-                                    Bodhisatwa Chatterjee,
-                                    <strong>Sharjeel Khan</strong>
-                                    , and Santosh Pande.
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://doi.acm.org?doi=3559009.3569645">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://zenodo.org/records/10826781">
-                                            <i class="fa fa-code"></i>
-                                            Code
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="assets/files/slides/PACT22.pdf">
-                                            <i class="fa fa-file-powerpoint"></i>
-                                            Slides
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">PACT 2022</div></div>
-                        </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">VICO : Demand-driven Verification for Improving Compiler Optimizations</div>
-                                <div class="subheading text-light">
-                                    <strong>Sharjeel Khan</strong>
-                                    , Bodhisatwa Chatterjee, and Santosh Pande.
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3524059.3532393">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="assets/files/slides/ICS22.pdf">
-                                            <i class="fa fa-file-powerpoint"></i>
-                                            Slides
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">ICS 2022</div></div>
-                        </div>
-                    </h3>
-                    <h3 class="mb-3">
-                        Journal Papers
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Real-time Digital RF Emulation - II: A Near Memory Custom Accelerator</div>
-                                <div class="subheading text-light">
-                                    Xiangyu Mao*, Mandovi Mukherjee*, Nael Mizanur Rahman*, Coleman DeLude*, Joseph Driscoll*, Sudarshan Sharma, Payman Behnam, Uday Kamal, Jongseok Woo, Daehyun Kim,
-                                    <strong>Sharjeel Khan</strong>
-                                    , Jianming Tong, Jamin Seo, Prachi Sinha, Madhavan Swaminathan, Tushar Krishna, Santosh Pande, Justin Romberg, and Saibal Mukhopadhyay. (* Authors contributed equally )
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://ieeexplore.ieee.org/document/10672547">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right">
-                                <div class="subheading text-primary">IEEE Transactions on</div>
-                                <div class="subheading text-primary">Radar Systems 2024</div>
                             </div>
                         </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Real-time Digital RF Emulation - I: The Direct Path Computational Model</div>
-                                <div class="subheading text-light">
-                                    Coleman DeLude*, Joseph Driscoll*, Mandovi Mukherjee*, Nael Mizanur Rahman*, Xiangyu Mao, Uday Kamal,
-                                    <strong>Sharjeel Khan</strong>
-                                    , Hariharan Sivaraman, Eric Huang, Jeffrey McHarg, Madhavan Swaminathan, Santosh Pande, Saibal Mukhopadhyay, and Justin Romberg. (* Authors contributed equally )
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://ieeexplore.ieee.org/document/10674015">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
+                        <div class="pub-item" data-category="conference">
+                            <textarea class="bibtex-data" style="display: none">
+@inproceedings{adams2025qwerty,
+  title={Qwerty: A Basis-Oriented Quantum Programming Language},
+  author={Adams, Austin J. and Khan, Sharjeel and Bhamra, Arjun S. and Abusaada, Ryan R. and Humble, Travis S. and Young, Jeffrey S. and Conte, Thomas M.},
+  booktitle={2025 IEEE International Conference on Quantum Computing and Engineering (QCE)},
+  year={2025},
+  organization={IEEE}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Qwerty: A Basis-Oriented Quantum Programming Language</div>
+                                    <div class="subheading text-light">
+                                        Austin J. Adams,
+                                        <strong>Sharjeel Khan</strong>
+                                        , Arjun S. Bhamra, Ryan R. Abusaada, Travis S. Humble, Jeffrey S. Young, and Thomas M. Conte.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://ieeexplore.ieee.org/document/11250282">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://github.com/gt-tinker/qwerty">
+                                                <i class="fa fa-code"></i>
+                                                Code
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2404.12603">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Preprint
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right">
-                                <div class="subheading text-primary">IEEE Transactions on</div>
-                                <div class="subheading text-primary">Radar Systems 2024</div>
-                            </div>
-                        </div>
-                    </h3>
-                    <h3 class="mb-3">
-                        Workshop Papers
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Formalization of Automated Trading Systems in a Concurrent Linear Framework</div>
-                                <div class="subheading text-light">
-                                    Iliano Cervesato,
-                                    <strong>Sharjeel Khan</strong>
-                                    , Giselle Reis, and Dragisa Zunic.
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Conference</span>
+                                    <div class="subheading text-primary">QCE 2025</div>
                                 </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/1904.06844v1">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="assets/files/slides/linearity18.pdf">
-                                            <i class="fa fa-file-powerpoint"></i>
-                                            Slides
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://github.com/Sharjeel-Khan/financialCLF">
-                                            <i class="fa fa-code"></i>
-                                            Code
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-shrink-0 text-md-right">
-                                <div class="subheading text-primary">Linearity &</div>
-                                <div class="subheading text-primary">TLLA Workshop 2018</div>
                             </div>
                         </div>
-                    </h3>
-                    <h3 class="mb-3">
-                        Arxiv
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Phaedrus: Exploring Dynamic Application Behavior with Lightweight Generative Models and Large-Language Models</div>
-                                <div class="subheading text-light">
-                                    Bodhisatwa Chatterjee, Neeraj Jadhav,
-                                    <strong>Sharjeel Khan</strong>
-                                    , and Santosh Pande.
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2412.06994">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
+                        <div class="pub-item" data-category="conference">
+                            <textarea class="bibtex-data" style="display: none">
+@inproceedings{porter2025tackling,
+  title={Tackling {ML}-based Dynamic Mispredictions using Statically Computed Invariants for Attack Surface Reduction},
+  author={Porter, Chris and Khan, Sharjeel and Ni, Kangqi and Pande, Santosh},
+  booktitle={Proceedings of the 30th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)},
+  year={2025},
+  publisher={ACM},
+  doi={10.1145/3676641.3716276}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Tackling ML-based Dynamic Mispredictions using Statically Computed Invariants for Attack Surface Reduction</div>
+                                    <div class="subheading text-light">
+                                        Chris Porter*,
+                                        <strong>Sharjeel Khan*</strong>
+                                        , Kangqi Ni, and Santosh Pande.
                                     </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3676641.3716276">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://zenodo.org/records/14777049">
+                                                <i class="fa fa-code"></i>
+                                                Code
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Conference</span>
+                                    <div class="subheading text-primary">ASPLOS 2025</div>
                                 </div>
                             </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">Preprint</div></div>
                         </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Practical compilation of fexprs using partial evaluation</div>
-                                <div class="subheading text-light">
-                                    Nathan Braswell,
-                                    <strong>Sharjeel Khan</strong>
-                                    , and Santosh Pande.
+                        <div class="pub-item" data-category="conference">
+                            <textarea class="bibtex-data" style="display: none">
+@inproceedings{adams2025asdf,
+  title={{ASDF}: A Compiler for Qwerty, a Basis-Oriented Quantum Programming Language},
+  author={Adams, Austin J. and Khan, Sharjeel and Bhamra, Arjun and Abusaada, Ryan and Cabrera, Anthony M. and Hoechst, Cameron and Humble, Travis S. and Young, Jeffrey S. and Conte, Thomas M.},
+  booktitle={Proceedings of the 23rd ACM/IEEE International Symposium on Code Generation and Optimization (CGO)},
+  year={2025},
+  publisher={ACM},
+  doi={10.1145/3696443.3708966}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">ASDF: A Compiler for Qwerty, a Basis-Oriented Quantum Programming Language</div>
+                                    <div class="subheading text-light">
+                                        Austin J. Adams,
+                                        <strong>Sharjeel Khan</strong>
+                                        , Arjun Bhamra, Ryan Abusaada, Anthony M. Cabrera, Cameron Hoechst, Travis S. Humble, Jeffrey S. Young, and Thomas M. Conte.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3696443.3708966">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://arxiv.org/pdf/2501.13262">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Preprint
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://doi.org/10.5281/zenodo.14080494">
+                                                <i class="fa fa-code"></i>
+                                                Code
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://github.com/gt-tinker/qwerty">
+                                                <i class="fab fa-github"></i>
+                                                GitHub
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2303.12254">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
-                                    </div>
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://github.com/Limvot/kraken">
-                                            <i class="fa fa-code"></i>
-                                            Code
-                                        </a>
-                                    </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Conference</span>
+                                    <div class="subheading text-primary">CGO 2025</div>
                                 </div>
                             </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">Preprint</div></div>
                         </div>
-                        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
-                            <div class="flex-grow-1">
-                                <div class="subheading text-light">Biscuit: A Compiler Assisted Scheduler for Detecting and Mitigating Cache-Based Side Channel Attacks</div>
-                                <div class="subheading text-light">
-                                    <strong>Sharjeel Khan</strong>
-                                    , Girish Mururu, and Santosh Pande.
-                                </div>
-                                <div class="d-flex flex-row mb3">
-                                    <div class="p-2 button pub">
-                                        <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2003.03850">
-                                            <i class="fa fa-file-pdf"></i>
-                                            Paper
-                                        </a>
+                        <div class="pub-item" data-category="conference">
+                            <textarea class="bibtex-data" style="display: none">
+@inproceedings{khan2024pythia,
+  title={Pythia: Compiler-Guided Defense Against Non-Control Data Attacks},
+  author={Khan, Sharjeel and Chatterjee, Bodhisatwa and Pande, Santosh},
+  booktitle={Proceedings of the 29th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)},
+  year={2024},
+  publisher={ACM},
+  doi={10.1145/3620666.3651343}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Pythia: Compiler-Guided Defense Against Non-Control Data Attacks</div>
+                                    <div class="subheading text-light">
+                                        <strong>Sharjeel Khan</strong>
+                                        , Bodhisatwa Chatterjee, and Santosh Pande.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3620666.3651343">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="assets/files/posters/Pythia.pdf">
+                                                <i class="fa fa-file-image"></i>
+                                                Poster
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="assets/files/slides/ASPLOS24.pdf">
+                                                <i class="fa fa-file-powerpoint"></i>
+                                                Slides
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://youtu.be/eihLepVzWCc?si=cxIrCbpyviz3D4kP">
+                                                <i class="fa fa-video"></i>
+                                                Short Talk
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Conference</span>
+                                    <div class="subheading text-primary">ASPLOS 2024</div>
+                                </div>
                             </div>
-                            <div class="flex-shrink-0 text-md-right"><div class="subheading text-primary">Preprint</div></div>
                         </div>
-                    </h3>
+                        <div class="pub-item" data-category="journal">
+                            <textarea class="bibtex-data" style="display: none">
+@article{mao2024rtemulation2,
+  title={Real-time Digital {RF} Emulation - {II}: A Near Memory Custom Accelerator},
+  author={Mao, Xiangyu and Mukherjee, Mandovi and Rahman, Nael Mizanur and DeLude, Coleman and Driscoll, Joseph and others},
+  journal={IEEE Transactions on Radar Systems},
+  year={2024},
+  publisher={IEEE},
+  doi={10.1109/TRS.2024.3454562}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Real-time Digital RF Emulation - II: A Near Memory Custom Accelerator</div>
+                                    <div class="subheading text-light">
+                                        Xiangyu Mao*, Mandovi Mukherjee*, Nael Mizanur Rahman*, Coleman DeLude*, Joseph Driscoll*, Sudarshan Sharma, Payman Behnam, Uday Kamal, Jongseok Woo, Daehyun Kim,
+                                        <strong>Sharjeel Khan</strong>
+                                        , Jianming Tong, Jamin Seo, Prachi Sinha, Madhavan Swaminathan, Tushar Krishna, Santosh Pande, Justin Romberg, and Saibal Mukhopadhyay. (* Authors contributed equally )
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://ieeexplore.ieee.org/document/10672547">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Journal</span>
+                                    <div class="subheading text-primary">IEEE Trans. Radar Systems 2024</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="journal">
+                            <textarea class="bibtex-data" style="display: none">
+@article{delude2024rtemulation1,
+  title={Real-time Digital {RF} Emulation - {I}: The Direct Path Computational Model},
+  author={DeLude, Coleman and Driscoll, Joseph and Mukherjee, Mandovi and Rahman, Nael Mizanur and others},
+  journal={IEEE Transactions on Radar Systems},
+  year={2024},
+  publisher={IEEE},
+  doi={10.1109/TRS.2024.3457394}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Real-time Digital RF Emulation - I: The Direct Path Computational Model</div>
+                                    <div class="subheading text-light">
+                                        Coleman DeLude*, Joseph Driscoll*, Mandovi Mukherjee*, Nael Mizanur Rahman*, Xiangyu Mao, Uday Kamal,
+                                        <strong>Sharjeel Khan</strong>
+                                        , Hariharan Sivaraman, Eric Huang, Jeffrey McHarg, Madhavan Swaminathan, Santosh Pande, Saibal Mukhopadhyay, and Justin Romberg. (* Authors contributed equally )
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://ieeexplore.ieee.org/document/10674015">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Journal</span>
+                                    <div class="subheading text-primary">IEEE Trans. Radar Systems 2024</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="conference">
+                            <textarea class="bibtex-data" style="display: none">
+@article{mururu2023beacons,
+  title={Beacons: An End-to-End Compiler Framework for Predicting and Utilizing Dynamic Loop Characteristics},
+  author={Mururu, Girish and Khan, Sharjeel and Chatterjee, Bodhisatwa and Chen, Chao and Porter, Chris and Gavrilovska, Ada and Pande, Santosh},
+  journal={Proceedings of the ACM on Programming Languages},
+  volume={7},
+  number={OOPSLA2},
+  year={2023},
+  publisher={ACM},
+  doi={10.1145/3622803}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Beacons: A End-to-End Compiler Framework for Predicting and Utilizing Dynamic Loop Characteristics</div>
+                                    <div class="subheading text-light">
+                                        Girish Mururu*,
+                                        <strong>Sharjeel Khan*</strong>
+                                        , Bodhisatwa Chatterjee*, Chao Chen, Chris Porter, Ada Gavrilovska, and Santosh Pande. (* Authors contributed equally )
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3622803">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2103.06647">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Preprint
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://doi.org/10.5281/zenodo.8333860">
+                                                <i class="fa fa-code"></i>
+                                                Code
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="assets/files/posters/Beacons.pdf">
+                                                <i class="fa fa-file-image"></i>
+                                                Poster
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="assets/files/slides/OOPSLA23.pdf">
+                                                <i class="fa fa-file-powerpoint"></i>
+                                                Slides
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://www.youtube.com/live/eqpA_yXia7Q?si=zQrr70DKqs0qk9rI&amp;t=11309">
+                                                <i class="fa fa-video"></i>
+                                                Conference Talk
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Conference</span>
+                                    <div class="subheading text-primary">OOPSLA 2023</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="conference">
+                            <textarea class="bibtex-data" style="display: none">
+@inproceedings{mukherjee2023hpc,
+  title={A High Performance Computing Architecture for Real-Time Digital Emulation of {RF} Interactions},
+  author={Mukherjee, Mandovi and Rahman, Nael Mizanur and DeLude, Coleman and Driscoll, Joseph and others},
+  booktitle={2023 IEEE Radar Conference (RadarConf23)},
+  year={2023},
+  organization={IEEE},
+  doi={10.1109/RadarConf2351548.2023.10149577}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">A High Performance Computing Architecture for Real-Time Digital Emulation of RF Interactions</div>
+                                    <div class="subheading text-light">
+                                        Mandovi Mukherjee, Nael Mizanur Rahman, Coleman DeLude, Joseph Driscoll, Uday Kamal, Jongseok Woo, Jamin Seo, Sudarshan Sharma, Xiangyu Mao, Payman Behnam,
+                                        <strong>Sharjeel Khan</strong>
+                                        , Daehyun Kim, Jianming Tong, Prachi Sinha, Santosh Pande, Tushar Krishna, Justin Romberg, Madhavan Swaminathan, and Saibal Mukhopadhyay.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://ieeexplore.ieee.org/document/10149577">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Conference</span>
+                                    <div class="subheading text-primary">RadarConf 2023</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="conference">
+                            <textarea class="bibtex-data" style="display: none">
+@inproceedings{porter2023decker,
+  title={Decker: Attack Surface Reduction via On-demand Code Mapping},
+  author={Porter, Chris and Khan, Sharjeel and Pande, Santosh},
+  booktitle={Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)},
+  year={2023},
+  publisher={ACM}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Decker: Attack Surface Reduction via On-demand Code Mapping</div>
+                                    <div class="subheading text-light">
+                                        Chris Porter,
+                                        <strong>Sharjeel Khan</strong>
+                                        , and Santosh Pande.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://doi.acm.org?doi=3575693.3575734">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2110.09557">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Preprint
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://doi.org/10.5281/zenodo.7222072">
+                                                <i class="fa fa-code"></i>
+                                                Code
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="assets/files/posters/Decker.pdf">
+                                                <i class="fa fa-file-image"></i>
+                                                Poster
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="assets/files/slides/ASPLOS23.pdf">
+                                                <i class="fa fa-file-powerpoint"></i>
+                                                Slides
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://youtu.be/qZoHw7RUEFA?si=VHDaBzbtYK3LGCdj">
+                                                <i class="fa fa-video"></i>
+                                                Conference Talk
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://youtu.be/0wlYse9UDDU?si=x7C59kOzRRFbpgu0">
+                                                <i class="fa fa-video"></i>
+                                                Short Talk
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Conference</span>
+                                    <div class="subheading text-primary">ASPLOS 2023</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="conference">
+                            <textarea class="bibtex-data" style="display: none">
+@inproceedings{chatterjee2022comcas,
+  title={Com-{CAS}: Effective Cache Apportioning under Compiler Guidance},
+  author={Chatterjee, Bodhisatwa and Khan, Sharjeel and Pande, Santosh},
+  booktitle={Proceedings of the International Conference on Parallel Architectures and Compilation Techniques (PACT)},
+  year={2022},
+  publisher={ACM},
+  doi={10.1145/3559009.3569645}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Com-CAS: Effective Cache Apportioning under Compiler Guidance</div>
+                                    <div class="subheading text-light">
+                                        Bodhisatwa Chatterjee,
+                                        <strong>Sharjeel Khan</strong>
+                                        , and Santosh Pande.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://doi.acm.org?doi=3559009.3569645">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://zenodo.org/records/10826781">
+                                                <i class="fa fa-code"></i>
+                                                Code
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="assets/files/slides/PACT22.pdf">
+                                                <i class="fa fa-file-powerpoint"></i>
+                                                Slides
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Conference</span>
+                                    <div class="subheading text-primary">PACT 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="conference">
+                            <textarea class="bibtex-data" style="display: none">
+@inproceedings{khan2022vico,
+  title={{VICO}: Demand-driven Verification for Improving Compiler Optimizations},
+  author={Khan, Sharjeel and Chatterjee, Bodhisatwa and Pande, Santosh},
+  booktitle={Proceedings of the 36th ACM International Conference on Supercomputing (ICS)},
+  year={2022},
+  publisher={ACM},
+  doi={10.1145/3524059.3532393}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">VICO : Demand-driven Verification for Improving Compiler Optimizations</div>
+                                    <div class="subheading text-light">
+                                        <strong>Sharjeel Khan</strong>
+                                        , Bodhisatwa Chatterjee, and Santosh Pande.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://dl.acm.org/doi/10.1145/3524059.3532393">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="assets/files/slides/ICS22.pdf">
+                                                <i class="fa fa-file-powerpoint"></i>
+                                                Slides
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Conference</span>
+                                    <div class="subheading text-primary">ICS 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="workshop">
+                            <textarea class="bibtex-data" style="display: none">
+@inproceedings{cervesato2018formalization,
+  title={Formalization of Automated Trading Systems in a Concurrent Linear Framework},
+  author={Cervesato, Iliano and Khan, Sharjeel and Reis, Giselle and Zunic, Dragisa},
+  booktitle={Linearity \& TLLA 2018},
+  year={2018}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Formalization of Automated Trading Systems in a Concurrent Linear Framework</div>
+                                    <div class="subheading text-light">
+                                        Iliano Cervesato,
+                                        <strong>Sharjeel Khan</strong>
+                                        , Giselle Reis, and Dragisa Zunic.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/1904.06844v1">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="assets/files/slides/linearity18.pdf">
+                                                <i class="fa fa-file-powerpoint"></i>
+                                                Slides
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://github.com/Sharjeel-Khan/financialCLF">
+                                                <i class="fa fa-code"></i>
+                                                Code
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Workshop</span>
+                                    <div class="subheading text-primary">Linearity & TLLA 2018</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="preprint">
+                            <textarea class="bibtex-data" style="display: none">
+@misc{chatterjee2024phaedrus,
+  title={Phaedrus: Exploring Dynamic Application Behavior with Lightweight Generative Models and Large-Language Models},
+  author={Chatterjee, Bodhisatwa and Jadhav, Neeraj and Khan, Sharjeel and Pande, Santosh},
+  year={2024},
+  eprint={2412.06994},
+  archivePrefix={arXiv}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Phaedrus: Exploring Dynamic Application Behavior with Lightweight Generative Models and Large-Language Models</div>
+                                    <div class="subheading text-light">
+                                        Bodhisatwa Chatterjee, Neeraj Jadhav,
+                                        <strong>Sharjeel Khan</strong>
+                                        , and Santosh Pande.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2412.06994">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Preprint</span>
+                                    <div class="subheading text-primary">arXiv</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="preprint">
+                            <textarea class="bibtex-data" style="display: none">
+@misc{braswell2023fexprs,
+  title={Practical compilation of fexprs using partial evaluation},
+  author={Braswell, Nathan and Khan, Sharjeel and Pande, Santosh},
+  year={2023},
+  eprint={2303.12254},
+  archivePrefix={arXiv}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Practical compilation of fexprs using partial evaluation</div>
+                                    <div class="subheading text-light">
+                                        Nathan Braswell,
+                                        <strong>Sharjeel Khan</strong>
+                                        , and Santosh Pande.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2303.12254">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://github.com/Limvot/kraken">
+                                                <i class="fa fa-code"></i>
+                                                Code
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Preprint</span>
+                                    <div class="subheading text-primary">arXiv</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pub-item" data-category="preprint">
+                            <textarea class="bibtex-data" style="display: none">
+@misc{khan2020biscuit,
+  title={Biscuit: A Compiler Assisted Scheduler for Detecting and Mitigating Cache-Based Side Channel Attacks},
+  author={Khan, Sharjeel and Mururu, Girish and Pande, Santosh},
+  year={2020},
+  eprint={2003.03850},
+  archivePrefix={arXiv}
+}</textarea
+                            >
+                            <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                                <div class="flex-grow-1">
+                                    <div class="subheading text-light">Biscuit: A Compiler Assisted Scheduler for Detecting and Mitigating Cache-Based Side Channel Attacks</div>
+                                    <div class="subheading text-light">
+                                        <strong>Sharjeel Khan</strong>
+                                        , Girish Mururu, and Santosh Pande.
+                                    </div>
+                                    <div class="d-flex flex-row mb3">
+                                        <div class="p-2 button pub">
+                                            <a class="btn btn-lg btn-outline" href="https://arxiv.org/abs/2003.03850">
+                                                <i class="fa fa-file-pdf"></i>
+                                                Paper
+                                            </a>
+                                        </div>
+                                        <div class="p-2 button pub">
+                                            <button class="btn btn-lg btn-outline bibtex-btn" type="button" onclick="copyBibTeX(this)">
+                                                <i class="fa fa-quote-right"></i>
+                                                BibTeX
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-shrink-0 text-md-end">
+                                    <span class="badge pub-badge">Preprint</span>
+                                    <div class="subheading text-primary">arXiv</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
@@ -670,6 +1178,32 @@
                 <div class="resume-section-content">
                     <h2 class="mb-2">Travel</h2>
                     <div id="chartdiv"></div>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #5b8dd9"></div>
+                            <span>North America</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #e07b39"></div>
+                            <span>Europe</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #2cc4a8"></div>
+                            <span>Asia / Pacific</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #e74c3c"></div>
+                            <span>Africa</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #a78bfa"></div>
+                            <span>Middle East</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-triangle"></div>
+                            <span>National Park</span>
+                        </div>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
@@ -689,6 +1223,42 @@
             document.addEventListener('DOMContentLoaded', function () {
                 const showMoreBtn = document.getElementById('show-more-btn');
                 const hiddenUpdates = document.querySelectorAll('.more-updates');
+
+                // Dark mode toggle
+                const darkBtn = document.getElementById('dark-mode-toggle');
+                const darkIcon = darkBtn.querySelector('i');
+                const navLogo = document.getElementById('nav-logo');
+                const setLogo = (isDark) => {
+                    if (navLogo) navLogo.src = isDark ? 'assets/img/SK-black.png' : 'assets/img/SK.png';
+                };
+                if (localStorage.getItem('darkMode') === 'on') {
+                    document.body.classList.add('dark-mode');
+                    darkIcon.classList.replace('fa-moon', 'fa-sun');
+                    darkBtn.childNodes[darkBtn.childNodes.length - 1].textContent = ' Light Mode';
+                    setLogo(true);
+                }
+                darkBtn.addEventListener('click', () => {
+                    const isDark = document.body.classList.toggle('dark-mode');
+                    darkIcon.classList.toggle('fa-moon', !isDark);
+                    darkIcon.classList.toggle('fa-sun', isDark);
+                    darkBtn.childNodes[darkBtn.childNodes.length - 1].textContent = isDark ? ' Light Mode' : ' Dark Mode';
+                    localStorage.setItem('darkMode', isDark ? 'on' : 'off');
+                    setLogo(isDark);
+                });
+
+                // Publication filter
+                const filterBtns = document.querySelectorAll('.btn-filter');
+                const pubItems = document.querySelectorAll('.pub-item');
+                filterBtns.forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        filterBtns.forEach((b) => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const filter = btn.dataset.filter;
+                        pubItems.forEach((item) => {
+                            item.style.display = filter === 'all' || item.dataset.category === filter ? '' : 'none';
+                        });
+                    });
+                });
 
                 showMoreBtn.addEventListener('click', function (event) {
                     event.preventDefault(); // Prevents the link from jumping to the top of the page
@@ -710,6 +1280,26 @@
                     }
                 });
             });
+
+            function copyBibTeX(btn) {
+                var item = btn.closest('.pub-item');
+                var ta = item.querySelector('.bibtex-data');
+                if (!ta) return;
+                var text = ta.value.trim();
+                navigator.clipboard
+                    .writeText(text)
+                    .then(function () {
+                        var origHTML = btn.innerHTML;
+                        btn.textContent = 'Copied!';
+                        setTimeout(function () {
+                            btn.innerHTML = origHTML;
+                        }, 2000);
+                    })
+                    .catch(function () {
+                        ta.select();
+                        document.execCommand('copy');
+                    });
+            }
         </script>
     </body>
 </html>
